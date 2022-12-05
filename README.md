@@ -1,12 +1,12 @@
 # **_TIPS_** para mejorar lógica de programación
 
-## 1. Descomponer problemas en problemas más pequeños.
+1.  Descomponer problemas en problemas más pequeños.
 
-## 2. Busca una solución que acepte todos los casos posibles.
+2.  Busca una solución que acepte todos los casos posibles.
 
-## 3. Busca siempre problemas más díficiles.
+3.  Busca siempre problemas más díficiles.
 
-## 4. Practicar mucho
+4.  Practicar mucho
 
 Plataformas para buscar desafios :
 
@@ -17,7 +17,7 @@ Plataformas para buscar desafios :
 - Exercism.10
 - Codewars
 
-## 5.
+5.
 
 | Estructura de datos | ≠   | Algoritmos básicos |
 | ------------------- | --- | ------------------ |
@@ -29,11 +29,11 @@ Plataformas para buscar desafios :
 | Grafos              |     | Dinámica           |
 |                     |     | Parseo y watching  |
 
-## 6. Patrones de diseño
+6.  Patrones de diseño
 
-## 7.Mirar código de otra gente
+7.Mirar código de otra gente
 
-## 8. Crear funciones desde cero (Evitar usar las nativas)
+8.  Crear funciones desde cero (Evitar usar las nativas)
 
 # Static Site Generator (SSG)
 
