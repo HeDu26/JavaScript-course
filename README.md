@@ -31,7 +31,7 @@ Plataformas para buscar desafios :
 
 6.  Patrones de diseño
 
-7.Mirar código de otra gente
+7.  Mirar código de otra gente
 
 8.  Crear funciones desde cero (Evitar usar las nativas)
 
