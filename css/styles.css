@@ -1,0 +1,18 @@
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h2 {
+  color: brown;
+}
+
+img {
+  width: 400px;
+}

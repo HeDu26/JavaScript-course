@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript-Temario</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <article id="temario-js">
+      <h1>JavaScript-Temario</h1>
+      <ul>
+        <li><a href="index.html#functions">Funciones</a></li>
+        <li><a href="index.html#destructuration">Destructuración</a></li>
+        <li><a href="index.html#literal-objects">Objetos literales</a></li>
+        <li>
+          <a href="index.html#rest-spread">Parámetros REST & Operador Spread</a>
+        </li>
+        <li><a href="index.html#arrow-function">Arrow functions</a></li>
+        <li><a href="index.html#prototypes">Prototypes</a></li>
+        <li>
+          <a href="index.html#prototype-inheritance">Herencia Prototípica</a>
+        </li>
+        <li>
+          <a href="index.html#inheritance-class"
+            >Clases y Herencia -Azúcar Sintáctica</a
+          >
+        </li>
+        <li>
+          <a href="index.html#static-getters-setters"
+            >Métodos estáticos, getters y setters</a
+          >
+        </li>
+        <li><a href="index.html#console-object">Console object</a></li>
+        <li><a href="index.html#date-object">Date object</a></li>
+        <li><a href="index.html#math-object">Math object</a></li>
+        <li>
+          <a href="index.html#regular-expressions">Regular expressions</a>
+        </li>
+        <li>
+          <a href="index.html#anonymous-functions"
+            >Funciones anónimas autoejecutables</a
+          >
+        </li>
+        <li><a href="Asincronia.html">Asíncronía en JavaScript</a></li>
+        <li><a href="index.html#"></a></li>
+        <li><a href="index.html#"></a></li>
+        <li><a href="index.html#"></a></li>
+        <li><a href="index.html#"></a></li>
+      </ul>
+    </article>
+    <hr />
+    <article id="functions">
+      <h2>Funciones</h2>
+      <section>
+        <h3>Función declarada</h3>
+        <ul>
+          <li>Function sin retorno</li>
+        </ul>
+        <pre><code>
+        function estoesunafuncion() {
+                       console.log("uno");
+                       console.log("dos");
+                       console.log("tres");
+                     }
+                */
+      //Invocación de funciones
+      estoesunafuncion();
+        </code></pre>
+        <ul>
+          <li>Function con retorno</li>
+        </ul>
+        <pre><code>
+          function funcionconretorno() {
+                       console.log("uno");
+                       return 19;
+                       console.log("dos");
+                       console.log("tres");
+                       return "La función ha retornado texto";
+                     } 
+          let functionvalor = funcionconretorno();
+                     console.log(functionvalor);
+        </code></pre>
+        <ul>
+          <li>Con parámetros</li>
+        </ul>
+        <p>
+          Se pueden definir parametros predeterminados si el usuario no ingresa
+          nada
+        </p>
+        <pre><code>
+          function saludar(<mark>nombre= "Desconocido"</mark>, edad =0) {
+                       console.log(`Hola mi nombre es ${nombre} y tengo ${edad}años`);
+                     }
+
+                     saludar("Coffee", 2);
+                     saludar();
+        </code></pre>
+      </section>
+      <section>
+        <h3>Funciones declaradas VS funciones expresadas</h3>
+        <ul>
+          <li>Función declarada</li>
+        </ul>
+        <pre><code>
+          <mark>funciondeclarada();</mark>
+
+          Function funciondeclarada(){
+            console.log("Esto es una funcion declarada, 
+            pude invocarse en cualquier parte del código, 
+            inluso antes de que se declarada");
+          }
+
+          <mark>funciondeclarada();</mark>
+        </code></pre>
+        <ul>
+          <li>Función Expresada</li>
+        </ul>
+        <p>Const- Se recomienda con funciones expresadas</p>
+        <pre><code>
+          <mark>const funcionexpresada = function</mark> (){
+            console.log("Esto es una función expresada, 
+            es decir una función que se le a asignado como valor a una variable, 
+            si invocamos esta función antes de su deficinión Js nos dira: ...
+            (no se puede mandar allamar antes)")
+          }
+
+          funcionexpresada();
+        </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <hr />
+    <article id="destructuration">
+      <h2>Destructuración</h2>
+      <p>
+        La destructuración se usa para <b>mostrar valor de variables</b> en la
+        menor cantidad de codigo:
+      </p>
+      <pre><code> 
+        const num = [1, 2, 3];
+
+      //Sin destructuración
+      let uno = num[0],
+        dos = num[1],
+        tres = num[2];
+      console.log(uno, dos, tres);
+
+      //Con destructuración
+      const [one, two, three] = num;
+      console.log(one, two, three);
+
+      const person = {
+        name: "Hec",
+        lastname: "Alva",
+        age: 25,
+      };
+
+      let { name, lastname, age } = person;
+      console.log(name, lastname, age); 
+      </code></pre>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <hr />
+    <article id="literal-objects">
+      <h2>Objetos literales</h2>
+      <p>
+        Implica una <b>nueva</b> forma de declarar atributos y metodos de un
+        objeto:
+      </p>
+      <ul>
+        <li>Versión anterior:</li>
+      </ul>
+      <pre><code>let nombre = "coffee";
+      edad = 2;
+
+      const perro = {
+         <mark>nombre: nombre,</mark> 
+        edad: edad,
+        ladrar: function () {
+          console.log("guauu guauu!!");
+        },
+      };
+      console.log(perro);
+      perro.ladrar();</code></pre>
+      <p>
+        Pero, si la variable que asignas al objeto como propiedad tiene el
+        <b>mismo nombre</b> que la propiedad que se pretende asignar (ejemplo
+        anterior)
+      </p>
+      <ul>
+        <li>Versión nueva:</li>
+      </ul>
+      <pre><code>const dog = {
+       <mark>nombre,</mark>
+        <mark>edad,</mark>
+        raza: "Callejero",
+        <mark>ladrar()</mark> {
+          console.log("guauu guauuu guauu!!!");
+        },
+      };
+
+      console.log(dog);
+      dog.ladrar();</code></pre>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <hr />
+    <article id="rest-spread">
+      <h2>Parámetros ...REST & ...Operador Spread</h2>
+      <section>
+        <h3>Parámetros Rest</h3>
+        <ul>
+          <li>
+            <p>
+              Forma de virtualmente ir agregando <b>parametros infinitos</b>,
+              cuando no se sabe cuantos valores se van a recibir
+            </p>
+          </li>
+          <li>
+            <p>
+              <b>.forEach</b> - Función en la cual se ejecuta por cada uno de
+              los elementos que vengan en c
+            </p>
+          </li>
+        </ul>
+        <pre><code>
+        function sumar(a, b, ...c) {
+        let resultado = a + b;
+
+        c. <mark>forEach</mark>(function (n) {
+          resultado += n;
+        });
+        return resultado;
+      }
+
+      console.log(sumar(1, 2));
+      console.log(sumar(1, 2, 3));
+      console.log(sumar(1, 2, 3, 4));
+      console.log(sumar(1, 2, 3, 4, 5));
+      </code></pre>
+      </section>
+      <section>
+        <h3>Operador Spread - Operador de propagación</h3>
+        <ul>
+          <li>
+            Situaciones en las que tengamos que almacenar multiples elementos en
+            un arreglo
+          </li>
+          <li>Se ejecuta en cualquier sentencia del código</li>
+          <li>
+            Manera de que una expresión se pueda expandir al recibir múltiples
+            valores, pero conservando la copia de original
+          </li>
+        </ul>
+        <pre><code>
+        const arr1 = [1, 2, 3, 4, 5],
+        arr2 = [6, 7, 8, 9, 0];
+
+      console.log(arr1, arr2);
+
+      const arr3 = [...arr1, ...arr2];
+
+      console.log(arr3);
+        </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="arrow-function">
+      <h2>Arrow functions</h2>
+      <section>
+        <ul>
+          <li>
+            Forma de definir funciones anonimas que sean expresadas (cuando a
+            variable se le designa una function))
+          </li>
+          <li>
+            CUIDADO!! AL usar arrow-function para declarar metodos dentro de
+            objetos literales porque tienen la capacidad de saltar el contexto y
+            heradar el contexto padre de donde han sido declaradas(objeto
+            window)
+          </li>
+        </ul>
+        <ol>
+          <li><b>expressed function</b></li>
+          <pre><code>
+        const saludo = function () {
+        console.log(`Hola`);
+      };
+
+      saludo();
+        </code></pre>
+          <li><b>Arrow function</b>- one instruction line</li>
+          <p>
+            Si se tiene una sola línea de código se pueden omitir las llaves, de
+            lo contrario debe llevar llaves.
+          </p>
+          <pre><code>
+         const saludo = () => console.log(`Hola`);
+         saludo();
+          </code></pre>
+          <li><b>passing parameters</b></li>
+          <pre><code>
+            const saludo = (nombre) => console.log(`Hola ${nombre}`);
+            saludo("Irma");
+          </code></pre>
+          <p>
+            Si la función solo recibe un parametro se omiten los parentesis(),
+            de lo contrario debe llevar parentesis.
+          </p>
+          <pre><code> const saludo = <mark>nombre</mark> =></code></pre>
+        </ol>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="prototypes">
+      <section>
+        <h2>Prototypes</h2>
+        <ul>
+          <li>
+            <p>
+              Las clases en JS el compilador las convierte en
+              <b>funciones prototipicas</b>
+            </p>
+          </li>
+        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="4">POO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Clases</b></td>
+              <td>Son un modelo a seguir (podría decirse que son ideas)</td>
+            </tr>
+            <tr>
+              <td rowspan="2"><b>Objetos</b></td>
+              <td rowspan="2">Es una instancia de una clase</td>
+              <td><b>Atributos</b></td>
+              <td>
+                Característica o propiedad del objeto(variables dentro de un
+                objeto)
+              </td>
+            </tr>
+            <tr>
+              <td><b>Métodos</b></td>
+              <td>
+                Son las acciones que un objeto puede realizar, son funciones
+                dentro de un objeto
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <ul>
+          <li><b>Instancia repetida</b> para diferentes valores</li>
+        </ul>
+        <pre><code>
+        const animal = {
+        nombre: "Pitbull",
+        sonar() {
+          console.log("Hago sonidos porque respiro");
+        },
+      };
+
+      const animal2 = {
+        nombre: "Lola Bunny",
+        sonar() {
+          console.log("Hago sonidos porque respiro");
+        },
+      };
+
+      console.log(animal);
+      console.log(animal2);
+      </code></pre>
+        <p>Si se necesitan varias instancias del mismo tipo creado es mejor:</p>
+        <ul>
+          <li><b>Función constructora VERSIÓN 1</b></li>
+        </ul>
+        <pre><code>
+        function Animal(nombre, genero) {
+        //Atributos
+        this.nombre = nombre;
+        this.genero = genero;
+        //Métodos
+        this.sonar = function () {
+          console.log("Hago sonidos porque estoy vivo");
+        };
+      }
+
+      const snoopy = new Animal("Snoopy", "Macho"),
+        lolaBunny = new Animal("Lola Bunny", "Hembra");
+      </code></pre>
+        <ul>
+          <li><b>Función constructora VERSIÓN 2 </b></li>
+        </ul>
+        <p>Donde se asignan los métodos al prototipo, no al a función</p>
+        <pre><code>
+        function Animal(nombre, genero) {
+        //Atributos
+        this.nombre = nombre;
+        this.genero = genero;
+      }
+      //Métodos
+      <mark>Animal.prototype.sonar</mark> = function () {
+        console.log("Hago sonidos porque estoy vivo");
+      };
+
+      <mark>Animal.prototype.saludar</mark> = function () {
+        console.log(`Hola me llamo ${this.nombre}`);
+      };
+
+      const snoopy = new Animal("Snoopy", "Macho"),
+        lolaBunny = new Animal("Lola Bunny", "Hembra");
+      </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="prototype-inheritance">
+      <section>
+        <h2>Herencia Prototípica</h2>
+        <p>
+          La palabra clave <b>super</b> es usada para acceder y llamar funciones
+          del padre de un objeto
+        </p>
+        <pre><code>
+        function perro(nombre, genero, tamanio) {
+        <mark>this.super = Animal;</mark>
+        this.super(nombre, genero);
+        this.tamanio = tamanio;
+      }
+        </code></pre>
+        <p>
+          El método <b>constructor</b> es un metodo especial para crear e
+          inicializar un objeto creado a partir de una clase.
+        </p>
+        <pre><code>
+        //Perro esta heredando de animal
+      perro.prototype = new Animal();
+      <mark>perro.prototype.constructor = perro;</mark>
+        </code></pre>
+        <ul>
+          <li>
+            <b>Sobreescritura de métodos</b> del prototipo padre en el hijo
+          </li>
+        </ul>
+        <pre><code>
+        <mark>perro.prototype.sonar = function ()</mark> {
+        console.log("Soy un perro y mi sonido es un ladrido");
+      };
+
+      perro.prototype.ladrar = function () {
+        console.log("Guauuuu Guauuu!!");
+      };
+        </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="inheritance-class">
+      <h2>Clases y Herencia -Azúcar Sintáctica</h2>
+      <p>Misma sintáxis que en otros lenguajes de programación.</p>
+      <section>
+        <h3>Class</h3>
+        <pre><code>
+        class Animal {
+        //el constructor es un método especial que se ejecuta en el momento de instanciar la clase
+        <mark>constructor(nombre, genero)</mark> {
+          this.nombre = nombre;
+          this.genero = genero;
+        }
+        <mark>//Métodos</mark>
+        sonar() {
+          console.log("Hago sonidos porque estoy vivo");
+        }
+        saludar() {
+          console.log(`Hola me llamo ${this.nombre}`);
+        }
+      }
+        </code></pre>
+      </section>
+      <section>
+        <h3>Inheritance</h3>
+        <pre><code>
+        class perro extends Animal {
+        constructor(nombre, genero, tamanio) {
+          <mark>super(nombre, genero);</mark>
+          this.tamanio = tamanio;
+        }
+        sonar() {
+          console.log("Soy un perro y mi sonido es un ladrido");
+        }
+        ladrar() {
+          console.log("Guauuuuu guauuuuu!!");
+        }
+      }
+        </code></pre>
+      </section>
+      <section>
+        <ul>
+          <li>Lamado de metodos y atributos</li>
+        </ul>
+        <pre><code>
+      const mimi = new Animal("mimi", "Hembra");
+      const scooby = new perro("Scooby", "Macho", "Grande");
+
+      console.log(mimi);
+      mimi.sonar();
+      mimi.saludar();
+
+      console.log(scooby);
+      mimi.saludar();
+      scooby.sonar();
+      scooby.ladrar();
+      </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="static-getters-setters">
+      <h2>Métodos estáticos, getters y setters</h2>
+      <section>
+        <h3>Método estático</h3>
+        <p>Se puede ejecutar sin necesidad de instanciar la clase</p>
+        <ul>
+          <li>(Dentro de una clase)</li>
+        </ul>
+        <pre><code>
+          class Animal{
+            .
+            .
+            .
+          }
+
+          class perro extends Animal{
+          .
+          .
+          <mark>static queEres()</mark> {
+          console.log("Soy el mejor amigo del hombre");
+        }
+          }
+
+          <mark>perro.queEres();</mark>
+        </code></pre>
+      </section>
+      <section>
+        <h3>getters y setters</h3>
+        <p>
+          Son métodos especiales que nos permiten establecer y obtener los
+          valores de atributos de nuestra clase
+        </p>
+        <ul>
+          <li>
+            Se establecen como metodos pero se mandar a llamar como atributos
+          </li>
+        </ul>
+        <pre><code>
+          class perro extends Animal{
+            constructor(nombre, genero, tamanio) {
+          super(nombre, genero);
+          this.tamanio = tamanio;
+          <mark>this.raza = null;</mark>
+        }
+          <mark>get getraza()</mark> {
+          return this.raza;
+        }
+
+        <mark>set setraza(raza)</mark> {
+          this.raza = raza;
+        }
+      }
+      <mark>scooby.setraza = "Grán Danés";</mark>
+      <mark>console.log(scooby.getraza);</mark>
+        </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="console-object">
+      <h2>Console object</h2>
+      <section>
+        <details>
+          <summary>Console.</summary>
+          <pre><code>
+      console.log(console);
+  
+        console.error("Esto es un error");
+        console.warn("Esto es un aviso");
+        console.info("Este es un corte informativo");
+        console.log("Es un registro de lo que ha pasado con nuestra aplicación");
+  
+        let nombre = "Héctor",
+          apellido = "Díaz",
+          edad = 25;
+  
+        console.log(nombre);
+        console.log(apellido);
+        console.log(edad);
+        console.log(nombre, apellido, edad);
+        console.log(`Hola mi nombre es ${nombre}`);
+        console.clear();
+  
+        console.log(window);
+        console.dir(window);
+        console.log(document);
+        console.dir(document);
+        console.clear();
+    </code></pre>
+        </details>
+      </section>
+      <section>
+        <p>
+          Si quieres conocer cuantas veces se ejecuta una acción puedes utilizar
+        </p>
+        <details>
+          <summary>console.count</summary>
+          <pre><code>
+        for (let i = 0; i= 100; i++) {
+         <mark>console.count("código for");</mark>
+         console.log(i);
+         }
+        </code></pre>
+        </details>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="date-object">
+      <h2>Date object</h2>
+      <section>
+        <details>
+          <summary>Date</summary>
+          <p>Los meses son indexados (0,1,2,3,4,5...)</p>
+          <pre><code>
+          console.log(Date());
+
+      let fecha = new Date();
+      console.log(fecha);
+
+      console.log(fecha.getDate());
+      console.log(fecha.getDay());
+      console.log(fecha.getMonth());
+      console.log(fecha.getFullYear());
+      console.log(fecha.getHours());
+      console.log(fecha.getMinutes());
+      console.log(fecha.getSeconds());
+      console.log(fecha.getMilliseconds());
+      console.log(fecha.toString());
+      console.log(fecha.toDateString());
+      console.log(fecha.toLocaleString());
+      console.log(fecha.getTimezoneOffset());
+      console.log(Date.now());
+      let cumplehec = new Date(1996, 9, 13);
+      console.log(cumplehec);
+          </code></pre>
+        </details>
+      </section>
+      <section>
+        <h3>Maneras de crear un objeto date</h3>
+        <pre><code>
+          let today = new Date()
+          let birthday = new Date('December 17, 1995 03:24:00')
+          let birthday = new Date('1995-12-17T03:24:00')
+          let birthday = new Date(1995, 11, 17)            // el mes es indexado como 0
+          let birthday = new Date(1995, 11, 17, 3, 24, 0)
+          let birthday = new Date(628021800000)            // pasando la marca temporal de la época
+        </code></pre>
+      </section>
+      <a
+        href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date"
+        target="_blank"
+        >Objetos globales-date</a
+      ><br /><br />
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="math-object">
+      <h2>Math object</h2>
+      <details>
+        <summary>console.log(Math.)</summary>
+        <pre><code>
+         console.log(Math);
+         console.log(Math.PI);
+         <mark>//No importa si es negativo</mark>
+         console.log(Math.abs(-9.2));
+         <mark>//Ejecuta el numero entero mayor</mark>
+         console.log(Math.ceil(9.2));
+         <mark>//Valor inmediato menor</mark>
+         console.log(Math.floor(9.2));
+         <mark>//Si no se quiere forzar bajar o subir, el decimal que más se acerque al valor</mark>
+         console.log(Math.round(9.5));
+         <mark>//raíz de un número</mark>
+         console.log(Math.sqrt(95));
+         <mark>//elevar potencias</mark>
+         console.log(Math.pow(2, 3));
+         <mark>//indica si el valor es negativo, positivo -1 0 1</mark>
+         console.log(Math.sign(-9.1));
+         <mark>//Da valores aleatorios</mark>
+         console.log(Math.random() * 1000);
+         console.log(Math.round(Math.random() * 1000));
+        </code></pre>
+      </details>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="short-circuit">
+      <h2>Corto Circuito</h2>
+      <section>
+        <h3>Cortocircuito-OR</h3>
+        <p>
+          Cuando el valor de la izquierda en la expresión siempre pueda validar
+          a true, es el valor que se cargará por defecto
+        </p>
+        <pre><code>
+        function saludar(nombre) {
+        nombre = nombre || "Desconocido";
+        console.log(`Hola ${nombre}`);
+      }
+
+      saludar("Héctor");
+      saludar();
+
+      console.log("Cadena " || "Valor de la derecha");
+      console.log(13 || "Valor de la derecha");
+      console.log(true || "Valor de la derecha");
+      console.log([] || "Valor de la derecha");
+      console.log({} || "Valor de la derecha");
+      console.log(0 || "Valor de la derecha");
+      console.log(null || "Valor de la derecha");
+      console.log("" || "Valor de la derecha");
+        </code></pre>
+      </section>
+      <section>
+        <h3>Cortocircuito-AND</h3>
+        <p>
+          Cuando el valor de la izquierda en la expresión siempre pueda validar
+          a false, es el valor que se cargará por defecto
+        </p>
+        <pre><code>
+          console.log(0 && "Valor de la derecha");
+          console.log(null && "Valor de la derecha");
+          console.log("" && "Valor de la derecha");
+        </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="regular-expressions">
+      <h2>Regular expressions</h2>
+      <section>
+        <ul>
+          <li>Primer forma de declararlo</li>
+        </ul>
+        <pre><code>
+          let ExpReg = new RegExp("lorem", "ig");
+        </code></pre>
+      </section>
+      <section>
+        <ul>
+          <li>Segunda forma de declararlo</li>
+        </ul>
+        <pre><code>
+          let expreg2 = /lorem{5,}/gi;
+        </code></pre>
+      </section>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article id="anonymous-functions">
+      <h2>Funciones anónimas autoejecutables</h2>
+      <ul>
+        <li><b>Versión Clasica</b></li>
+        <li>IMPORTANTE!! Agregar punto y coma al final de la IIFE</li>
+        <li>Sirve para crear una encapsulación del codigo</li>
+        <li>Al cargar el navegador se carga la programación de ese archivo</li>
+      </ul>
+      <pre><code>
+        (function () {
+        console.log("Mi primer IIFE");
+      })() <mark> ; </mark>
+      </code></pre>
+      <ul>
+        <li>ejemplo</li>
+      </ul>
+      <pre><code>
+        (function ( <mark>d, w, c</mark> ) {
+        console.log("Mi segunda IIFE");
+        console.log(d);
+        console.log(w);
+        c.log("Holi ");
+      })(<mark> document, window, console </mark> ) <mark> ; </mark>
+      </code></pre>
+      <a href="index.html#temario-js">☝️</a>
+    </article>
+    <article>
+      <h2>Módulos (import/export)</h2>
+    </article>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>
