@@ -5,17 +5,20 @@
   - [Identifiers](#identifiers)
   - [Reserved words](#reserved-words)
   - [Strings](#strings)
+  - [Functions](#functions)
   - []()
   - []()
   - []()
+- [Performance](#performance)
+- [Structures](#structures)
   - []()
-- [Performance]()
-- [Structures]()
-- [Classes]()
-- [Arrays and it's methods]()
-- [Objects]()
-- [asynchronism]()
-- [DOM (Document Object Model)]()
+  - []()
+  - []()
+- [Classes](#classes)
+- [Arrays and it's methods](#arrays-and-its-methods)
+- [Objects](#objects)
+- [asynchronism](#asynchronism)
+- [DOM (Document Object Model)](#dom-document-object-model)
 - []()
 
 # **_TIPS_** para mejorar lógica de programación
@@ -170,7 +173,119 @@ console.log(
 );
 ```
 
+## Functions
+
+- Without return
+- With return
+- Parameters
+  - If users don´t type anything. (predetermined values)
+
+```js
+function saludar(nombre = "Desconocido", edad = 0) {
+  console.log(`Hola mi nombre es ${nombre} y tengo ${edad}años`);
+}
+
+saludar("Coffee", 2);
+saludar();
+```
+
+### Expressed function
+
+- **_Const-_** Se recomienda con funciones expresadas
+
+```js
+ const funcionexpresada = function (){
+            console.log( "Esto es una función expresada,
+            es decir una función que se le a asignado como valor a una variable,
+            si invocamos esta función antes de su deficinión Js nos dira: ...
+            no se puede mandar allamar antes" )
+          }
+
+          funcionexpresada();
+```
+
+## Destructuring
+
+- La destructuración se usa para mostrar valor de variables en la menor cantidad de codigo:
+
+```js
+const num = [1, 2, 3];
+
+//Sin destructuración
+let uno = num[0],
+  dos = num[1],
+  tres = num[2];
+console.log(uno, dos, tres);
+
+//Con destructuración
+const [one, two, three] = num;
+console.log(one, two, three);
+
+const person = {
+  name: "Hec",
+  lastname: "Alva",
+  age: 25,
+};
+
+let { name, lastname, age } = person;
+console.log(name, lastname, age);
+```
+
+## Literal Objects
+
+- Implica una nueva forma de declarar atributos y metodos de un objeto:
+
+### Versión anterior
+
+```js
+let nombre = "coffee";
+edad = 2;
+
+const perro = {
+  nombre: nombre,
+  edad: edad,
+  ladrar: function () {
+    console.log("guauu guauu!!");
+  },
+};
+console.log(perro);
+perro.ladrar();
+```
+
+- Pero, si la variable que asignas al objeto como propiedad tiene el mismo nombre que la propiedad que se pretende asignar (ejemplo anterior)
+
+### Nueva versión
+
+```js
+const dog = {
+  nombre,
+  edad,
+  raza: "Callejero",
+  ladrar() {
+    console.log("guauu guauuu guauu!!!");
+  },
+};
+
+console.log(dog);
+dog.ladrar();
+```
+
+# Performance
+
+# Structures
+
+# Classes
+
+# Arrays and it's methods
+
+# Objects
+
+# asynchronism
+
+# DOM (Document Object Model)
+
 <!--
+
 # Static Site Generator (SSG)
 
 Para blogs, portafolios, landing page, etc.
