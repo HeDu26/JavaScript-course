@@ -5,8 +5,12 @@
   - [Identifiers](#identifiers)
   - [Reserved words](#reserved-words)
   - [Strings](#strings)
-  - [Functions](#functions)
   - []()
+  - []()
+  - []()
+- [Functions](#functions)
+  - [Bascis](#basics-1)
+  - [Expressed function](#expressed-function)
   - []()
   - []()
 - [Performance](#performance)
@@ -57,6 +61,13 @@ Plataformas para buscar desafios :
 7.  Mirar código de otra gente
 
 8.  Crear funciones desde cero (Evitar usar las nativas)
+
+## good practices
+
+1. IMPORTACIÓN DE MÓDULOS.
+2. DECLARACIÓN DE VARIABLES.
+3. DECLARACIÓN DE FUNCIONES.
+4. EJECUCIÓN DE CÓDIGO.
 
 # Basics
 
@@ -149,14 +160,9 @@ V: var, volatile, void
 W: while, with
 ```
 
-## good practices
-
-1. IMPORTACIÓN DE MÓDULOS.
-2. DECLARACIÓN DE VARIABLES.
-3. DECLARACIÓN DE FUNCIONES.
-4. EJECUCIÓN DE CÓDIGO.
-
 ## Strings
+
+- Strings and their properties
 
 ```js
 let nombre = "Hector";
@@ -173,35 +179,89 @@ console.log(
 );
 ```
 
-## Functions
-
-- Without return
-- With return
-- Parameters
-  - If users don´t type anything. (predetermined values)
+- Interpolación
 
 ```js
-function saludar(nombre = "Desconocido", edad = 0) {
-  console.log(`Hola mi nombre es ${nombre} y tengo ${edad}años`);
-}
-
-saludar("Coffee", 2);
-saludar();
+//Template string `comillas invertidas`
+let saludo2 = `Hola mi nombre es: ${nombre} ${apellido}.`;
+console.log(saludo2);
 ```
 
-### Expressed function
+## Ternary Operator
 
-- **_Const-_** Se recomienda con funciones expresadas
+- (Condición)? verdadero : falso
 
 ```js
- const funcionexpresada = function (){
-            console.log( "Esto es una función expresada,
-            es decir una función que se le a asignado como valor a una variable,
-            si invocamos esta función antes de su deficinión Js nos dira: ...
-            no se puede mandar allamar antes" )
-          }
+let edad = 17;
+let mayoredad = edad >= 18 ? "Eres mayor de edad" : "Eres menor de edad";
+console.log(mayoredad);
+```
 
-          funcionexpresada();
+## Error
+
+1. try
+2. catch
+3. finally (optional)
+
+```js
+try {
+  console.log("En el try se agrega el codigo a evaluar");
+  noexiste;
+  console.log("Segundo mensaje en el try");
+} catch (error) {
+  console.log("Catch captura cualquier error surgido o lanzado en el try");
+  console.log(error);
+} finally {
+  console.log("Se ejecutara siempre al final de un bloque try -catch");
+}
+```
+
+- eg.
+
+```js
+try {
+  let num = 6;
+
+  if (isNaN(num)) {
+    throw new Error("El caracter introducido no es un número");
+  } else {
+    console.log(num * num);
+  }
+} catch (error) {
+  console.log(`Se produjo el siguiente error: ${error}`);
+}
+```
+
+## break & continue
+
+- for, while, switch, case, do, do while
+
+### Break
+
+- **Sale** de la estructura en el valor indicado
+
+```js
+const num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+for (let i = 0; i < num.length; i++) {
+  if (i === 5) {
+    break;
+  }
+  console.log(num[i]);
+}
+```
+
+### Continue
+
+- Solo **salta** la posición indicada
+
+```js
+for (let i = 0; i < num.length; i++) {
+  if (i === 6) {
+    continue;
+  }
+  console.log(num[i]);
+}
 ```
 
 ## Destructuring
@@ -270,6 +330,82 @@ console.log(dog);
 dog.ladrar();
 ```
 
+## Parameters ...REST &... Operator Spread
+
+### Rest Parameter
+
+- Forma de virtualmente ir agregando parametros infinitos, cuando no se sabe cuantos valores se van a recibir
+
+- **_.forEach_** - Función en la cual se ejecuta por cada uno de los elementos que vengan en c
+
+```js
+function sumar(a, b, ...c) {
+  let resultado = a + b;
+
+  c.forEach(function (n) {
+    resultado += n;
+  });
+  return resultado;
+}
+
+console.log(sumar(1, 2));
+console.log(sumar(1, 2, 3));
+console.log(sumar(1, 2, 3, 4));
+console.log(sumar(1, 2, 3, 4, 5));
+```
+
+### Spread Operator - Propagation Operator
+
+- Interpolación de arreglos
+- Se ejecuta en cualquier sentencia del código
+- Manera de que una expresión se pueda expandir al recibir múltiples valores, pero conservando la copia de original
+
+```js
+const arr1 = [1, 2, 3, 4, 5],
+  arr2 = [6, 7, 8, 9, 0];
+
+console.log(arr1, arr2);
+
+const arr3 = [...arr1, ...arr2];
+
+console.log(arr3);
+```
+
+# Functions
+
+## Basics
+
+- Without return
+- With return
+- Parameters
+  - If users don´t type anything. (predetermined values)
+
+```js
+function saludar(nombre = "Desconocido", edad = 0) {
+  console.log(`Hola mi nombre es ${nombre} y tengo ${edad}años`);
+}
+
+saludar("Coffee", 2);
+saludar();
+```
+
+## Expressed function
+
+- **_Const-_** Se recomienda con funciones expresadas
+
+```js
+ const funcionexpresada = function (){
+            console.log( "Esto es una función expresada,
+            es decir una función que se le a asignado como valor a una variable,
+            si invocamos esta función antes de su deficinión Js nos dira: ...
+            no se puede mandar allamar antes" )
+          }
+
+          funcionexpresada();
+```
+
+## Arrow Functions
+
 # Performance
 
 # Structures
@@ -279,6 +415,24 @@ dog.ladrar();
 # Arrays and it's methods
 
 # Objects
+
+```js
+const hec = {
+  nombre: "Hector",
+  apellido: "ALvarez",
+  edad: 26,
+  pasatiempos: ["gym", "programar", "ver series"],
+  soltero: false,
+  contacto: {
+    email: "hec@ail.com",
+    twitter: "@hcr96",
+    movil: "222324324",
+  },
+  saludar() {
+    console.log(`Hola:)`);
+  },
+};
+```
 
 # asynchronism
 
