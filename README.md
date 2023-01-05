@@ -1,26 +1,29 @@
 # Índice
 
 - [Logic TIPS](#tips-para-mejorar-lógica-de-programación)
+  - [Good Practices](#good-practices)
 - [Basics](#basics)
   - [Identifiers](#identifiers)
   - [Reserved words](#reserved-words)
   - [Strings](#strings)
-  - []()
-  - []()
-  - []()
+  - [Ternary Operator](#ternary-operator)
+  - [Error](#error)
+  - [break & continue](#break--continue)
+  - [Destructuring](#destructuring)
+  - [Parameters ...REST &... Operator Spread](#parameters-rest--operator-spread)
 - [Functions](#functions)
   - [Bascis](#basics-1)
   - [Expressed function](#expressed-function)
-  - []()
-  - []()
+  - [Arrow Functions](#arrow-functions)
+- [Prototypes](#prototypes)
+  - [Prototype functions](#prototype-functions)
+  - [Prototype Inheritance](#prototype-inheritance)
+- [Classes & Inheritance (Syntactic sugar)](#classes--inheritance-syntactic-sugar)
+  - [Static Methods, getters and Setters](#static-methods-getters-and-setters)
+- [Objects](#objects)
+- [Arrays and their methods](#arrays-and-their-methods)
 - [Performance](#performance)
 - [Structures](#structures)
-  - []()
-  - []()
-  - []()
-- [Classes](#classes)
-- [Arrays and it's methods](#arrays-and-its-methods)
-- [Objects](#objects)
 - [asynchronism](#asynchronism)
 - [DOM (Document Object Model)](#dom-document-object-model)
 - []()
@@ -139,7 +142,7 @@ function holaMundo(nombre) {
 holaMundo("Jonathan");
 ```
 
-## reserved words
+## Reserved words
 
 ```properties
 A: abstract
@@ -291,45 +294,6 @@ let { name, lastname, age } = person;
 console.log(name, lastname, age);
 ```
 
-## Literal Objects
-
-- Implica una nueva forma de declarar atributos y metodos de un objeto:
-
-### Versión anterior
-
-```js
-let nombre = "coffee";
-edad = 2;
-
-const perro = {
-  nombre: nombre,
-  edad: edad,
-  ladrar: function () {
-    console.log("guauu guauu!!");
-  },
-};
-console.log(perro);
-perro.ladrar();
-```
-
-- Pero, si la variable que asignas al objeto como propiedad tiene el mismo nombre que la propiedad que se pretende asignar (ejemplo anterior)
-
-### Nueva versión
-
-```js
-const dog = {
-  nombre,
-  edad,
-  raza: "Callejero",
-  ladrar() {
-    console.log("guauu guauuu guauu!!!");
-  },
-};
-
-console.log(dog);
-dog.ladrar();
-```
-
 ## Parameters ...REST &... Operator Spread
 
 ### Rest Parameter
@@ -406,13 +370,215 @@ saludar();
 
 ## Arrow Functions
 
-# Performance
+- Forma de definir funciones anonimas que sean expresadas (cuando a variable se le designa una function))
+- **CUIDADO** AL usar arrow-function para declarar metodos porque tienen la capacidad de saltar el contexto y heradar el contexto padre de donde han sido declaradas(objeto window)
 
-# Structures
+### 1. Expressed function
 
-# Classes
+```js
+const saludo = function () {
+  console.log(`Hola`);
+};
+saludo();
+```
 
-# Arrays and it's methods
+### 2. A line of instruction
+
+```js
+const saludo = () => console.log(`Hola`);
+saludo();
+```
+
+### 3. Parameters pass (name)
+
+```js
+const saludo = (nombre) => console.log(`Hola ${nombre}`);
+saludo("Irma");
+```
+
+- Si la función solo recibe un parametro se omiten los parentesis(), de lo contrario debe llevar parentesis.
+
+```js
+const saludo = nombre =>;
+saludo();
+```
+
+# Prototypes
+
+|             |                                                       | POO           |                                                                                  |
+| ----------- | ----------------------------------------------------- | ------------- | -------------------------------------------------------------------------------- |
+| **Classes** | Son un modelo a seguir (podría decirse que son ideas) |
+| **Objects** | Es una instancia de una clase                         | **Atributos** | Característica o propiedad del objeto(variables dentro de un objeto)             |
+|             |                                                       | **Métodos**   | Son las acciones que un objeto puede realizar, son funciones dentro de un objeto |
+
+## Prototype functions
+
+- Las clases en JS el compilador las convierte en **funciones prototipicas**
+
+### 1. Instancia repetida (misma clase).
+
+Mejor solo crear una clase animal y no varios objetos animal
+
+```js
+const animal = {
+  nombre: "Pitbull",
+  sonar() {
+    console.log("Hago sonidos porque respiro");
+  },
+};
+
+const animal2 = {
+  nombre: "Lola Bunny",
+  sonar() {
+    console.log("Hago sonidos porque respiro");
+  },
+};
+
+console.log(animal);
+console.log(animal2);
+```
+
+### 2. Función constructora
+
+**VERSIÓN 1**
+
+```js
+function Animal(nombre, genero) {
+  //Atributos
+  this.nombre = nombre;
+  this.genero = genero;
+  //Métodos
+  this.sonar = function () {
+    console.log("Hago sonidos porque estoy vivo");
+  };
+}
+
+const snoopy = new Animal("Snoopy", "Macho"),
+  lolaBunny = new Animal("Lola Bunny", "Hembra");
+```
+
+- Con versión 1 se utilizan todos los métodos (Puede dar problema de rendimiento y memoria)
+- Para **Mejorar** rendimiento
+
+**VERSIÓN 2**
+
+- Donde se asignan los métodos al prototipo, no al a función
+- Se sacan los métodos de la función constructora, solo se queda con atributos y los métodos se asignan al prototipo.
+
+```JS
+function Animal(nombre, genero) {
+        //Atributos
+        this.nombre = nombre;
+        this.genero = genero;
+      }
+      //Métodos
+      Animal.prototype.sonar = function () {
+        console.log("Hago sonidos porque estoy vivo");
+      };
+
+      Animal.prototype.saludar = function () {
+        console.log(`Hola me llamo ${this.nombre}`);
+      };
+
+      const snoopy = new Animal("Snoopy", "Macho"),
+        lolaBunny = new Animal("Lola Bunny", "Hembra");
+```
+
+## Prototype Inheritance
+
+- La palabra clave **_super_** es usada para acceder y llamar funciones del padre de un objeto
+
+```js
+//Atributos
+function perro(nombre, genero, tamanio) {
+  this.super = Animal;
+  this.super(nombre, genero);
+  this.tamanio = tamanio;
+}
+```
+
+- El método **_constructor_** es un metodo especial para crear e inicializar un objeto creado a partir de una clase.
+
+```js
+//Perro esta heredando de animal
+perro.prototype = new Animal();
+perro.prototype.constructor = perro;
+```
+
+- **Sobreescritura de métodos** del prototipo padre a hijo
+
+```js
+//Métodos
+//Método sobreescrito
+perro.prototype.sonar = function () {
+  console.log("Soy un perro y mi sonido es un ladrido");
+};
+// Método nuevo
+perro.prototype.ladrar = function () {
+  console.log("Guauuuu Guauuu!!");
+};
+
+const snoopy = new perro("Snoopy", "Macho", "mediano"),
+```
+
+# Classes & Inheritance (Syntactic sugar)
+
+## Classes
+
+- Las classes no reciben parametros pero tenemos un método especial llamado **_constructor_**
+
+```js
+class Animal {
+  //el constructor es un método especial que se ejecuta en el momento de instanciar la clase
+  constructor(nombre, genero) {
+    this.nombre = nombre;
+    this.genero = genero;
+  }
+  //Métodos
+  sonar() {
+    console.log("Hago sonidos porque estoy vivo");
+  }
+  saludar() {
+    console.log(`Hola me llamo ${this.nombre}`);
+  }
+}
+```
+
+## Inheritance
+
+```js
+class perro extends Animal {
+  constructor(nombre, genero, tamanio) {
+    //con el método super() se manda a llamar el constructor de la clase padre
+    super(nombre, genero);
+    this.tamanio = tamanio;
+  }
+  sonar() {
+    console.log("Soy un perro y mi sonido es un ladrido");
+  }
+  ladrar() {
+    console.log("Guauuuuu guauuuuu!!");
+  }
+}
+```
+
+- Llamando métodos y atributos
+
+```js
+const mimi = new Animal("mimi", "Hembra"),
+  scooby = new perro("Scooby", "Macho", "Grande");
+
+console.log(mimi);
+mimi.sonar();
+mimi.saludar();
+
+console.log(scooby);
+mimi.saludar();
+scooby.sonar();
+scooby.ladrar();
+```
+
+## Static Methods, getters and Setters
 
 # Objects
 
@@ -433,6 +599,51 @@ const hec = {
   },
 };
 ```
+
+### Literal Objects
+
+- Implica una nueva forma de declarar atributos y metodos de un objeto:
+
+### Versión anterior
+
+```js
+let nombre = "coffee";
+edad = 2;
+
+const perro = {
+  nombre: nombre,
+  edad: edad,
+  ladrar: function () {
+    console.log("guauu guauu!!");
+  },
+};
+console.log(perro);
+perro.ladrar();
+```
+
+- Pero, si la variable que asignas al objeto como propiedad tiene el mismo nombre que la propiedad que se pretende asignar (ejemplo anterior)
+
+### Nueva versión
+
+```js
+const dog = {
+  nombre,
+  edad,
+  raza: "Callejero",
+  ladrar() {
+    console.log("guauu guauuu guauu!!!");
+  },
+};
+
+console.log(dog);
+dog.ladrar();
+```
+
+# Arrays and their methods
+
+# Performance
+
+# Structures
 
 # asynchronism
 
