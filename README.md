@@ -11,6 +11,9 @@
   - [break & continue](#break--continue)
   - [Destructuring](#destructuring)
   - [Parameters ...REST &... Operator Spread](#parameters-rest--operator-spread)
+  - [Console Object](#console-object)
+  - [Date Object](#date-object)
+  - [Regular Expressions](#regular-expressions)
 - [Functions](#functions)
   - [Bascis](#basics-1)
   - [Expressed function](#expressed-function)
@@ -335,6 +338,97 @@ const arr3 = [...arr1, ...arr2];
 console.log(arr3);
 ```
 
+## Console Object
+
+```js
+console.log(console);
+
+console.error("Esto es un error");
+console.warn("Esto es un aviso");
+console.info("Este es un corte informativo");
+console.log("Es un registro de lo que ha pasado con nuestra aplicación");
+
+let nombre = "Héctor",
+  apellido = "Díaz",
+  edad = 25;
+
+console.log(nombre);
+console.log(apellido);
+console.log(edad);
+console.log(nombre, apellido, edad);
+console.log(`Hola mi nombre es ${nombre}`);
+console.clear();
+
+console.log(window);
+console.dir(window);
+console.log(document);
+console.dir(document);
+console.clear();
+```
+
+- ¿Cuantas veces se ejecuta una acción?
+
+```js
+for (let i = 0; (i = 100); i++) {
+  console.count("código for");
+  console.log(i);
+}
+```
+
+## Date object
+
+[MDN date object](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Date)
+
+- Los meses son indexados (0,1,2,3,4,5...)
+
+```js
+console.log(Date());
+
+let fecha = new Date();
+console.log(fecha);
+
+console.log(fecha.getDate());
+console.log(fecha.getDay());
+console.log(fecha.getMonth());
+console.log(fecha.getFullYear());
+console.log(fecha.getHours());
+console.log(fecha.getMinutes());
+console.log(fecha.getSeconds());
+console.log(fecha.getMilliseconds());
+console.log(fecha.toString());
+console.log(fecha.toDateString());
+console.log(fecha.toLocaleString());
+console.log(fecha.getTimezoneOffset());
+console.log(Date.now());
+let cumplehec = new Date(1996, 9, 13);
+console.log(cumplehec);
+```
+
+- Cómo crear objeto date
+
+```js
+let today = new Date();
+let birthday = new Date("December 17, 1995 03:24:00");
+let birthday = new Date("1995-12-17T03:24:00");
+let birthday = new Date(1995, 11, 17); // el mes es indexado como 0
+let birthday = new Date(1995, 11, 17, 3, 24, 0);
+let birthday = new Date(628021800000); // pasando la marca temporal de la época
+```
+
+## Regular Expressions
+
+- Primer forma de declararlo
+
+```js
+let ExpReg = new RegExp("lorem", "ig");
+```
+
+- Segunda forma de declaración
+
+```js
+let expreg2 = /lorem{5,}/gi;
+```
+
 # Functions
 
 ## Basics
@@ -457,7 +551,7 @@ const snoopy = new Animal("Snoopy", "Macho"),
   lolaBunny = new Animal("Lola Bunny", "Hembra");
 ```
 
-- Con versión 1 se utilizan todos los métodos (Puede dar problema de rendimiento y memoria)
+- Con versión 1 se utilizan todos los métodos (Puede dar **problema de rendimiento y memoria**)
 - Para **Mejorar** rendimiento
 
 **VERSIÓN 2**
@@ -579,6 +673,58 @@ scooby.ladrar();
 ```
 
 ## Static Methods, getters and Setters
+
+- Se puede decir que todas la clases dentro de JS son públicas.
+
+### Static Method
+
+```js
+class perro extends Animal {
+  constructor(nombre, genero, tamanio) {
+    super(nombre, genero);
+    this.tamanio = tamanio;
+  }
+  sonar() {
+    console.log("Soy un perro y mi sonido es un ladrido");
+  }
+
+  ladrar() {
+    console.log("Guauuuuu guauuuuu!!");
+  }
+
+  //Un método stático se puede ejecutar sin necesidad de instanciar la clase
+  static queEres() {
+    console.log("Soy el mejor amigo del hombre");
+  }
+}
+perro.queEres();
+```
+
+### getters & setters
+
+- Métodos especiales que nos **permiten establecer y obtener** los valores de **atributos** de nuestra clase.
+
+- **_get_** es un método para obtener valores de atributos pero se manda a llamar como atributo xd.
+- **_set_** Para establecer valores a los atributos.
+
+```js
+class perro extends Animal {
+  constructor(nombre, genero, tamanio) {
+    super(nombre, genero);
+    this.tamanio = tamanio;
+    this.raza = null;
+  }
+  get getraza() {
+    return this.raza;
+  }
+
+  set setraza(raza) {
+    this.raza = raza;
+  }
+}
+scooby.setraza = "Grán Danés";
+console.log(scooby.getraza);
+```
 
 # Objects
 

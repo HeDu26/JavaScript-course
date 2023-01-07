@@ -71,7 +71,7 @@ cuadradocallback(1, (value, result) => {
 
 //PROMESAS
 
-/* function cuadradoPromise(value) {
+function cuadradoPromise(value) {
   if (typeof value !== "number")
     return Promise.reject(
       `Error, el valor "${value}" ingresado no es un número`
@@ -113,11 +113,11 @@ cuadradoPromise(0)
     console.log(`Promise: ${obj.value}, ${obj.result}`);
     console.log("Fin promise");
   })
-  .catch(); */
+  .catch();
 
 //Funciones asíncronas
 
-/* function cuadradoPromise(value) {
+function cuadradoPromise(value) {
   if (typeof value !== "number")
     return Promise.reject(
       `Error, el valor "${value}" ingresado no es un número`
@@ -136,4 +136,4 @@ async function functionAsincronaDeclarada() {
   try {
   } catch (error) {}
 }
- */
+
