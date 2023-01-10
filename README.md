@@ -24,10 +24,13 @@
 - [Classes & Inheritance (Syntactic sugar)](#classes--inheritance-syntactic-sugar)
   - [Static Methods, getters and Setters](#static-methods-getters-and-setters)
 - [Objects](#objects)
+- [Modules](#modules)
 - [Arrays and their methods](#arrays-and-their-methods)
 - [Performance](#performance)
 - [Structures](#structures)
 - [asynchronism](#asynchronism)
+  - [Timers](#timers)
+  - [Code types](#code-types)
 - [DOM (Document Object Model)](#dom-document-object-model)
 - []()
 
@@ -785,6 +788,75 @@ console.log(dog);
 dog.ladrar();
 ```
 
+# Modules
+
+- Para mandar a llamar archivos js desde otros archivos js.
+- **IMPORTANTE** la etiqueta script donde se manda a llamar el módulo js dentro de html es de tipo módulo sig. eg.
+
+```html
+<script src="js-code/modules.js" type="module"></script>
+```
+
+- Si el navegador no soporta módulos se agrega un atributo boolean sig. eg
+
+```html
+<script src="js-code/nomodules.js" nomodule></script>
+```
+
+## Export
+
+- **_export default_**
+
+1.  Si es _const_ o _let_ primero se asigna y despues se exporta.
+
+```js
+const password = "jiahs";
+export default password;
+```
+
+2.  Si es clase se puede colocar inmediatamente default
+
+```js
+export class Saludar {
+  constructor() {}
+  metodo() {}
+}
+```
+
+3. Solamente podemos tener variable, función o clase para mandar a llamar por default y se llama de manera independiente
+
+```js
+// el archivo que se carga por defecto es password
+import password, { Saludar } from "./carpeta.js";
+
+class Digitos extends Saludar{
+  ...
+}
+```
+
+- OtroEjemplo export
+
+```js
+const sumar = (a, b) => a + b;
+const restar = (a, b) => a - b;
+
+export const aritmetica = {
+  sumar,
+  restar,
+};
+```
+
+## Import
+
+```js
+import { aritmetica } from "./aritmetica.js";
+
+console.log(aritmetica.restar(3, 4));
+saludar();
+let saludo = new Saludar();
+saludo();
+```
+
 # Arrays and their methods
 
 # Performance
@@ -792,6 +864,121 @@ dog.ladrar();
 # Structures
 
 # asynchronism
+
+- **_Single thread_** Pilar del lenguaje JavaScript (una cosa a ala vez)
+
+  ![single-thread](https://miro.medium.com/max/720/0*X7Z0k20cwHHi8UOI.webp)
+
+## Timers
+
+### setTimeout
+
+- Base: milisegundos
+- Se ejecuta una sola vez
+
+```js
+setTimeout(() => {
+  console.log("Ejecutando un setTimeout, esto se ejecuta una sóla vez");
+}, 3000);
+```
+
+### setInterval
+
+- Se ejecuta n veces
+
+```js
+setInterval(() => {
+  console.log(
+    "Ejecutando un setInterval, esto se ejecuta indefinidamente cada intervalo de tiempo"
+  );
+}, 1000);
+```
+
+- Muestra la hora cada determinado tiempo
+
+```js
+setInterval(() => {
+  console.log(new Date().toLocaleTimeString());
+}, 1000);
+```
+
+### ClearTimeout
+
+- Funciona cuando el temporizador esta **Asociado a una variable**
+
+```js
+let temporizador = setTimeout(() => {
+  console.log(new Date().toLocaleTimeString());
+}, 1000);
+clearTimeout(temporizador);
+
+console.log("Después del clearTimeout");
+```
+
+### ClearInterval
+
+```js
+let temporizador = setInterval(() => {
+  console.log(new Date().toLocaleTimeString());
+}, 1000);
+
+clearInterval(temporizador);
+console.log("Después del clearInterval");
+```
+
+## Code types
+
+### Synchronous Code (Bloking & No-Bloking)
+
+- Espera resultado en tiempo presente para poder continuar
+- **_LIFO_** last int first out
+
+```js
+(() => {
+  console.log("Código síncrono");
+  console.log("inicio");
+
+  function dos() {
+    console.log("Dos");
+  }
+
+  function uno() {
+    console.log("Uno");
+    dos();
+    console.log("Tres");
+  }
+
+  uno();
+  console.log("Fin");
+})();
+```
+
+### Asynchronism (No-bloking)
+
+- El código sigue trabajando en lo que espera respuesta en algún momento futuro
+- **JavaScript usa un modelo asíncrono y no bloqueante**, con un loop de eventos implementado en un sólo hilo,(single thread) para operaciones de entrada y salida(input/output)
+
+```js
+(() => {
+  console.log("Código Asíncrono");
+  console.log("Inicio");
+
+  function dos() {
+    setTimeout(function () {
+      console.log("Dos");
+    }, 1000);
+  }
+  function uno() {
+    setTimeout(function () {
+      console.log("Uno");
+    }, 0);
+    dos();
+    console.log("Tres");
+  }
+  uno();
+  console.log("Fin");
+})();
+```
 
 # DOM (Document Object Model)
 

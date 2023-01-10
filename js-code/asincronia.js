@@ -1,6 +1,6 @@
-/* //Código síncrono bloqueante
+//Código síncrono bloqueante
 
-(() => {
+/* (() => {
   console.log("Código síncrono");
   console.log("inicio");
 
@@ -16,11 +16,10 @@
 
   uno();
   console.log("Fin");
-})();
-console.clear();
+})(); */
 //Código asíncrono no bloqueante
 
-(() => {
+/* (() => {
   console.log("Código Asíncrono");
   console.log("Inicio");
 
@@ -38,8 +37,7 @@ console.clear();
   }
   uno();
   console.log("Fin");
-})();
- */
+})(); */
 
 //CALLBACK
 
@@ -71,7 +69,7 @@ cuadradocallback(1, (value, result) => {
 
 //PROMESAS
 
-function cuadradoPromise(value) {
+/* function cuadradoPromise(value) {
   if (typeof value !== "number")
     return Promise.reject(
       `Error, el valor "${value}" ingresado no es un número`
@@ -114,10 +112,10 @@ cuadradoPromise(0)
     console.log("Fin promise");
   })
   .catch();
-
+ */
 //Funciones asíncronas
 
-function cuadradoPromise(value) {
+/* function cuadradoPromise(value) {
   if (typeof value !== "number")
     return Promise.reject(
       `Error, el valor "${value}" ingresado no es un número`
@@ -137,3 +135,4 @@ async function functionAsincronaDeclarada() {
   } catch (error) {}
 }
 
+ */
