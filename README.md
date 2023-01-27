@@ -31,6 +31,10 @@
 - [asynchronism](#asynchronism)
   - [Timers](#timers)
   - [Code types](#code-types)
+  - [Callbacks](#callbacks-callback-hell)
+  - [Promises](#promises)
+  - [Async & Await](#async--await)
+- [New kinds data JS (ES6)](#new-kinds-data-js-es6)
 - [DOM (Document Object Model)](#dom-document-object-model)
 - []()
 
@@ -979,6 +983,326 @@ console.log("Después del clearInterval");
   console.log("Fin");
 })();
 ```
+
+## Callbacks (Callback Hell)
+
+- Mecanismo por exelencia que tiene js para llamar algunas funciones en sincronía.
+
+```js
+function cuadradocallback(value, callback) {
+  setTimeout(() => {
+    callback(value, value * value);
+  }, 0 | (Math.random() * 1000));
+}
+
+cuadradocallback(0, (value, result) => {
+  console.log("inicia callback");
+  console.log(`callback: ${value}, ${result}`);
+  cuadradocallback(1, (value, result) => {
+    console.log(`callback: ${value}, ${result}`);
+    cuadradocallback(2, (value, result) => {
+      console.log(`callback: ${value}, ${result}`);
+      cuadradocallback(3, (value, result) => {
+        console.log(`callback: ${value}, ${result}`);
+        cuadradocallback(4, (value, result) => {
+          console.log(`callback: ${value}, ${result}`);
+          console.log("Fin callback");
+          console.log("Callback hell!!!!😈🤘");
+          console.log("http://callbackhell.com/");
+        });
+      });
+    });
+  });
+});
+```
+
+## Promises
+
+- Para un mejor manejo de los errores.
+- Conviene cuando ya tenemos **varios procesos asíncronos** sino mejor usar callbacks.
+
+```js
+function cuadradoPromise(value) {
+  if (typeof value !== "number")
+    return Promise.reject(
+      `Error, el valor "${value}" ingresado no es un número`
+    );
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        value,
+        result: value * value,
+      });
+    }, 0 | (Math.random() * 1000));
+  });
+}
+
+cuadradoPromise(0)
+  // .then recibe una función (arrow function)
+  .then((obj) => {
+    //console.log(obj);
+    console.log("Inicio Promise");
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(1);
+  })
+  .then((obj) => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(2);
+  })
+  .then((obj) => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(3);
+  })
+  .then((obj) => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(4);
+  })
+  .then((obj) => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(5);
+  })
+  .then((obj) => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    console.log("Fin promise");
+  })
+  .catch();
+```
+
+## Async & Await
+
+- Viene a completar las promesas
+
+- Para poder utilizar la palabra reservada **_await_** es necesario declarar **_Async_** la función
+
+### Con función declarada
+
+```js
+function cuadradoPromise(value) {
+  if (typeof value !== "number")
+    return Promise.reject(
+      `Error, el valor "${value}" ingresado no es un número`
+    );
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        value,
+        result: value * value,
+      });
+    }, 0 | (Math.random() * 1000));
+  });
+}
+
+async function functionAsincronaDeclarada() {
+  try {
+    console.log("Inicio Async Function");
+
+    let obj = await cuadradoPromise(0);
+    console.log(`Async function: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(1);
+    console.log(`Async function: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(2);
+    console.log(`Async function: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(3);
+    console.log(`Async function: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise("4");
+    console.log(`Async function: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(5);
+    console.log(`Async function: ${obj.value},${obj.result}`);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+functionAsincronaDeclarada();
+```
+
+### Con función expresada
+
+```js
+const funcionAsincronaExpresada = async () => {
+  try {
+    console.log("Inicio Async Function");
+
+    let obj = await cuadradoPromise(0);
+    console.log(`Async function 1: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(1);
+    console.log(`Async function 1: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(2);
+    console.log(`Async function 1: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(3);
+    console.log(`Async function 1: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(4);
+    console.log(`Async function 1: ${obj.value},${obj.result}`);
+
+    obj = await cuadradoPromise(5);
+    console.log(`Async function 1: ${obj.value},${obj.result}`);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+funcionAsincronaExpresada();
+```
+
+# New kinds data JS (ES6)
+
+## Symbol
+
+- Por buena practica el tipo de dato sera **_const_**
+- Tipo de dato primitivo para ocultar propiedades.
+- Propiedad de objetos se mantienen privados.
+- Identificador único dentro de las propiedades de objeto, se utiliza **_symbol_** pero para declarar esa propiedad se utilizan los corchetes **[]**
+
+```js
+const NOMBRE = Symbol("name");
+const SALUDAR = Symbol("greeting");
+
+const persona = {
+  [NOMBRE]: "Héctor",
+  [SALUDAR]: "e we",
+  edad: 35,
+};
+
+console.log(persona);
+
+// Para obtener las propiedades symbol de un objeto
+console.log(Object.getOwnPropertySymbols(persona));
+```
+
+## Sets
+
+- Estructura de datos
+- **Arreglo mejorado** que solo acepta valores únicos. (Quita los duplicados)
+
+```js
+const SET = new Set([
+  1,
+  2,
+  3,
+  3,
+  4,
+  5,
+  true,
+  false,
+  false,
+  {},
+  {},
+  "hola",
+  "HOla",
+]);
+console.log(SET);
+```
+
+## MAP
+
+- Estructura de datos.
+- Sirven como **objeto primitivo** pero sus propiedades son cadenas de textos aunque podemos crear valores que no seas cadenas de texto.
+- Son conjunto de datos relacionados entre si.
+- Funciona con **_setters_** y **_getters_**
+
+```js
+let mapa = new Map();
+
+mapa.set("Nombre", "Héctor");
+mapa.set("Apellido", "Álvarez");
+mapa.set("Edad", 26);
+
+console.log(mapa);
+console.log(mapa.size);
+console.log(mapa.has("correo"));
+console.log(mapa.has("Nombre"));
+console.log(mapa.get("Nombre"));
+mapa.set("Nombre", "Eduardo");
+console.log(mapa.get("Nombre"));
+
+for (let [key, valor] of mapa) {
+  console.log(`llave: ${key}, valor: ${valor}`);
+}
+```
+
+## WeakSets & WeakMaps
+
+- Son como variables de estado
+- De tipo **_const_**
+- Properties: **_.add_** **_.delete_**
+- Solamente permite llaves de tipo objeto, referenciadas a un variable
+
+### WeakSet
+
+```js
+const ws = new WeakSet();
+
+let valor1 = { valor1: 1 };
+let valor2 = { valor2: 2 };
+let valor3 = { valor3: 3 };
+
+ws.add(valor1);
+ws.add(valor2);
+
+console.log(ws);
+
+console.log(ws.has(valor1)); // true
+console.log(ws.has(valor3)); // false
+
+ws.delete(valor2);
+console.log(ws);
+
+ws.add(valor2);
+ws.add(valor3);
+console.log(ws);
+
+setInterval(() => {
+  console.log(ws);
+}, 1000);
+
+setTimeout(() => {
+  valor1 = null;
+  valor2 = null;
+  valor3 = null;
+}, 5000);
+```
+
+### Weakmap
+
+```js
+const wm = new WeakMap();
+let llave1 = {};
+let llave2 = {};
+let llave3 = {};
+
+wm.set(llave1, 1);
+wm.set(llave2, 2);
+
+console.log(wm);
+console.log(wm.has(llave1));
+console.log(wm.has(llave3));
+console.log(wm.get(llave1));
+console.log(wm.get(llave2));
+console.log(wm.get(llave3));
+wm.delete(llave2);
+console.log(wm);
+wm.set(llave2, 2);
+wm.set(llave3, 3);
+console.log(wm);
+setInterval(() => console.log(wm), 1000);
+
+setTimeout(() => {
+  llave1 = null;
+  llave2 = null;
+  llave3 = null;
+}, 5000);
+```
+
+## Iterables & Iterators
 
 # DOM (Document Object Model)
 

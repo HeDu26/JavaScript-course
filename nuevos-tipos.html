@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuevos Tipos de Datos en JavaScript</title>
+  </head>
+  <body>
+    <h1>Nuevos Tipos de Datos en JavaScript</h1>
+    <script>
+      /* let id = Symbol("id");
+      let id2 = Symbol("id2");
+
+      console.log(id === id2);
+      console.log(id, id2);
+      console.log(typeof id, typeof id2);
+
+      const NOMBRE = Symbol("name");
+      const SALUDAR = Symbol("greeting");
+
+      const persona = {
+        [NOMBRE]: "Héctor",
+        [SALUDAR]: "e we",
+        edad: 35,
+      };
+
+      console.log(persona);
+
+      // Para obtener las propiedades symbol de un objeto
+      console.log(Object.getOwnPropertySymbols(persona)); */
+
+      //SETS
+
+      /* const SET = new Set([
+        1,
+        2,
+        3,
+        3,
+        4,
+        5,
+        true,
+        false,
+        false,
+        {},
+        {},
+        "hola",
+        "HOla",
+      ]);
+      console.log(SET.size);
+
+      const SET2 = new Set(); */
+
+      //MAP
+
+      /* let mapa = new Map();
+
+      mapa.set("Nombre", "Héctor");
+      mapa.set("Apellido", "Álvarez");
+      mapa.set("Edad", 26);
+
+      console.log(mapa);
+      console.log(mapa.size);
+      console.log(mapa.has("correo"));
+      console.log(mapa.has("Nombre"));
+      console.log(mapa.get("Nombre"));
+      mapa.set("Nombre", "Eduardo");
+      console.log(mapa.get("Nombre"));
+
+      for(let [key, valor] of mapa){
+        console.log(`llave: ${key}, valor: ${valor}`);
+      } */
+
+      //WeakSet & weakMap
+
+      /* const ws = new WeakSet();
+
+      let valor1 = { valor1: 1 };
+      let valor2 = { valor2: 2 };
+      let valor3 = { valor3: 3 };
+
+      ws.add(valor1);
+      ws.add(valor2);
+
+      console.log(ws);
+
+      console.log(ws.has(valor1)); // true
+      console.log(ws.has(valor3)); // false
+
+      ws.delete(valor2);
+      console.log(ws);
+
+      ws.add(valor2);
+      ws.add(valor3);
+      console.log(ws);
+
+      setInterval(() => {
+        console.log(ws);
+      }, 1000);
+
+      setTimeout(() => {
+        valor1 = null;
+        valor2 = null;
+        valor3 = null;
+      }, 5000); */
+    </script>
+  </body>
+</html>
