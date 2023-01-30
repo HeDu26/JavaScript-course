@@ -10,99 +10,175 @@
     <h1>Nuevos Tipos de Datos en JavaScript</h1>
     <script>
       /* let id = Symbol("id");
-      let id2 = Symbol("id2");
+                  let id2 = Symbol("id2");
 
-      console.log(id === id2);
-      console.log(id, id2);
-      console.log(typeof id, typeof id2);
+                  console.log(id === id2);
+                  console.log(id, id2);
+                  console.log(typeof id, typeof id2);
 
-      const NOMBRE = Symbol("name");
-      const SALUDAR = Symbol("greeting");
+                  const NOMBRE = Symbol("name");
+                  const SALUDAR = Symbol("greeting");
 
-      const persona = {
-        [NOMBRE]: "Héctor",
-        [SALUDAR]: "e we",
-        edad: 35,
-      };
+                  const persona = {
+                    [NOMBRE]: "Héctor",
+                    [SALUDAR]: "e we",
+                    edad: 35,
+                  };
 
-      console.log(persona);
+                  console.log(persona);
 
-      // Para obtener las propiedades symbol de un objeto
-      console.log(Object.getOwnPropertySymbols(persona)); */
+                  // Para obtener las propiedades symbol de un objeto
+                  console.log(Object.getOwnPropertySymbols(persona)); */
 
       //SETS
 
       /* const SET = new Set([
-        1,
-        2,
-        3,
-        3,
-        4,
-        5,
-        true,
-        false,
-        false,
-        {},
-        {},
-        "hola",
-        "HOla",
-      ]);
-      console.log(SET.size);
+                    1,
+                    2,
+                    3,
+                    3,
+                    4,
+                    5,
+                    true,
+                    false,
+                    false,
+                    {},
+                    {},
+                    "hola",
+                    "HOla",
+                  ]);
+                  console.log(SET.size);
 
-      const SET2 = new Set(); */
+                  const SET2 = new Set(); */
 
       //MAP
 
       /* let mapa = new Map();
 
-      mapa.set("Nombre", "Héctor");
-      mapa.set("Apellido", "Álvarez");
-      mapa.set("Edad", 26);
+                  mapa.set("Nombre", "Héctor");
+                  mapa.set("Apellido", "Álvarez");
+                  mapa.set("Edad", 26);
 
-      console.log(mapa);
-      console.log(mapa.size);
-      console.log(mapa.has("correo"));
-      console.log(mapa.has("Nombre"));
-      console.log(mapa.get("Nombre"));
-      mapa.set("Nombre", "Eduardo");
-      console.log(mapa.get("Nombre"));
+                  console.log(mapa);
+                  console.log(mapa.size);
+                  console.log(mapa.has("correo"));
+                  console.log(mapa.has("Nombre"));
+                  console.log(mapa.get("Nombre"));
+                  mapa.set("Nombre", "Eduardo");
+                  console.log(mapa.get("Nombre"));
 
-      for(let [key, valor] of mapa){
-        console.log(`llave: ${key}, valor: ${valor}`);
-      } */
+                  for(let [key, valor] of mapa){
+                    console.log(`llave: ${key}, valor: ${valor}`);
+                  } */
 
       //WeakSet & weakMap
 
       /* const ws = new WeakSet();
 
-      let valor1 = { valor1: 1 };
-      let valor2 = { valor2: 2 };
-      let valor3 = { valor3: 3 };
+                  let valor1 = { valor1: 1 };
+                  let valor2 = { valor2: 2 };
+                  let valor3 = { valor3: 3 };
 
-      ws.add(valor1);
-      ws.add(valor2);
+                  ws.add(valor1);
+                  ws.add(valor2);
 
-      console.log(ws);
+                  console.log(ws);
 
-      console.log(ws.has(valor1)); // true
-      console.log(ws.has(valor3)); // false
+                  console.log(ws.has(valor1)); // true
+                  console.log(ws.has(valor3)); // false
 
-      ws.delete(valor2);
-      console.log(ws);
+                  ws.delete(valor2);
+                  console.log(ws);
 
-      ws.add(valor2);
-      ws.add(valor3);
-      console.log(ws);
+                  ws.add(valor2);
+                  ws.add(valor3);
+                  console.log(ws);
 
-      setInterval(() => {
-        console.log(ws);
-      }, 1000);
+                  setInterval(() => {
+                    console.log(ws);
+                  }, 1000);
 
-      setTimeout(() => {
-        valor1 = null;
-        valor2 = null;
-        valor3 = null;
-      }, 5000); */
+                  setTimeout(() => {
+                    valor1 = null;
+                    valor2 = null;
+                    valor3 = null;
+                  }, 5000); */
+
+      // ITERATOR & ITERABLE
+
+      /* const iterable = [1, 2, 3, 4, 5];
+                  //const iterable = "Hola Mundo";
+                  //const iterable = new Set([1, 2, 3, 3, 4, 5]);
+                  //const iterable = new Map([["nombre", "jon"], ["edad", 35]]);
+
+                  //Accedemos al iterador de nuestra variable iterable
+                  const iterador = iterable[Symbol.iterator]();
+
+                  let next = iterador.next();
+
+                  while (!next.done) {
+                    console.log(next.value);
+                    next = iterador.next();
+                  } */
+
+      // GENERATORS
+
+      /* function* iterable() {
+                    yield "hola";
+                    console.log("hola consola");
+                    yield "hola 2";
+                    console.log("Seguimos con más instrucciones de nuestro código");
+                    yield "hola 3";
+                    yield "hola 4";
+                  }
+
+                  let iterador = iterable();
+                  console.log(iterador.next());
+                  console.log(iterador.next());
+                  console.log(iterador.next());
+
+                  for (let y of iterador) {
+                    console.log(y);
+                  }
+
+                  const arr = [...iterable()];
+                  console.log(arr); */
+
+      /*  function cuadrado(valor) {
+              setTimeout(() => {
+                return console.log({ valor, result: valor * valor });
+              }, Math.random() * 1000);
+            }
+
+            function* funGenerator() {
+              console.log("Inicio generador");
+              yield cuadrado(0);
+              yield cuadrado(1);
+              yield cuadrado(2);
+              yield cuadrado(3);
+              yield cuadrado(4);
+              yield cuadrado(5);
+              yield cuadrado(6);
+              console.log("Termina generador");
+            }
+
+            let gen = funGenerator();
+            for (let y of gen) {
+              console.log(y);
+            } */
+
+      /* const persona = {
+        nombre: "",
+        apellido: "",
+        edad: 0,
+      };
+
+      const manejador = {
+        set(obj, prop, alor) {},
+      };
+      const hec = new Proxy(persona, manejador);
+
+      console.log(hec); */
     </script>
   </body>
 </html>

@@ -1304,6 +1304,104 @@ setTimeout(() => {
 
 ## Iterables & Iterators
 
+- Estructura de datos lineal que hace que sus datos sean publicos y se puedan leer.
+
+- **iterable**: Elemento cuyo contenido se puede recorrer.
+
+- **iterador**: Mecanismo que recorre los elmentos.
+- Elementos iterables:
+
+  - Nodos, strings, maps, array, etc..
+
+```js
+const iterable = [1, 2, 3, 4, 5];
+//const iterable = "Hola Mundo";
+//const iterable = new Set([1, 2, 3, 3, 4, 5]);
+//const iterable = new Map([["nombre", "jon"], ["edad", 35]]);
+
+//Accedemos al iterador de nuestra variable iterable
+const iterador = iterable[Symbol.iterator]();
+
+let next = iterador.next();
+
+while (!next.done) {
+  console.log(next.value);
+  next = iterador.next();
+}
+```
+
+## Generators
+
+- Hacer el código de una función iterable.
+- Función que permite trabajar de Manera amigable los iteradores.
+- Agregar **_\*_** asterisco despues de la palabra reservada **_function\*_**.
+- **_yield_** sirve como un retorno "pausado" que sigue mandando resultados despues de su linea d ejecución
+
+```js
+function cuadrado(valor) {
+  setTimeout(() => {
+    return console.log({ valor, result: valor * valor });
+  }, Math.random() * 1000);
+}
+
+function* funGenerator() {
+  console.log("Inicio generador");
+  yield cuadrado(0);
+  yield cuadrado(1);
+  yield cuadrado(2);
+  yield cuadrado(3);
+  yield cuadrado(4);
+  yield cuadrado(5);
+  yield cuadrado(6);
+  console.log("Termina generador");
+}
+
+let gen = funGenerator();
+for (let y of gen) {
+  console.log(y);
+}
+```
+
+## Proxies
+
+- Se puede usar para crear validaciones dentro de las propiedades de los objetos
+- Mecanismo que permite crear un objeto literal
+
+```js
+const persona = {
+  nombre: "",
+  apellido: "",
+  edad: 0,
+};
+const manejador = {
+  set(obj, prop, valor) {
+    if (Object.keys(obj).indexOf(prop) === -1) {
+      return console.error(
+        `La propiedad "${prop}" no existe en el objeto persona.`
+      );
+    }
+    if (
+      (prop === "nombre" || prop === "apellido") &&
+      !/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g.test(valor)
+    ) {
+      return console.error(
+        `La propiedad "${prop}"" sólo acepta letras y espacios en blanco`
+      );
+    }
+    obj[prop] = valor;
+  },
+};
+const jon = new Proxy(persona, manejador);
+jon.nombre = "Jon";
+jon.apellido = "MirCha";
+jon.edad = 35;
+jon.twitter = "@jonmircha";
+console.log(jon);
+console.log(persona);
+```
+
+## Propiedades Dinámicas de los Objetos
+
 # DOM (Document Object Model)
 
 <!--
