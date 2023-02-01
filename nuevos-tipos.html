@@ -179,6 +179,24 @@
       const hec = new Proxy(persona, manejador);
 
       console.log(hec); */
+
+      // Computed properties
+
+      /* let aleatorio = Math.round(Math.random() * 100 + 5);
+      const objUsuarios = {
+        [`id_${aleatorio}`]: "Valor Aleatorio",
+      };
+      console.log(objUsuarios);
+
+      const usuarios = ["Hector", "Miguel", "kofy", "Adri"];
+
+      usuarios.forEach(
+        (usuario, index) => (objUsuarios[`id_ ${index}`] = usuario)
+      );
+      console.log(objUsuarios); */
+
+      /* console.log(JSON.parse("[1,2,3]")); */
+      console.log(JSON.stringify([1, 2, 3]));
     </script>
   </body>
 </html>

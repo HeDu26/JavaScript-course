@@ -35,6 +35,7 @@
   - [Promises](#promises)
   - [Async & Await](#async--await)
 - [New kinds data JS (ES6)](#new-kinds-data-js-es6)
+- [JSON (JavaScript Object Notation)](#json-javascript-object-notation)
 - [DOM (Document Object Model)](#dom-document-object-model)
 - []()
 
@@ -753,7 +754,7 @@ const hec = {
 };
 ```
 
-### Literal Objects
+## Literal Objects
 
 - Implica una nueva forma de declarar atributos y metodos de un objeto:
 
@@ -790,6 +791,42 @@ const dog = {
 
 console.log(dog);
 dog.ladrar();
+```
+
+## .this
+
+### .call, apply, bind
+
+- Manera de enlazar métodos de un objeto nuevo, llamandolos desde otro objeto ya existente
+
+```js
+console.log(this);
+this.lugar = "Contexto Global";
+function saludar(saludo, aQuien) {
+  console.log(`${saludo} ${aQuien} desde el ${this.lugar}`);
+}
+saludar("Hola", "kEnAi");
+const obj = {
+  lugar: "Contexto Objeto",
+};
+saludar.call(obj, "Hola", "Jon");
+saludar.call(null, "Hola", "Jon");
+saludar.call(this, "Hola", "Jon");
+saludar.apply(obj, ["Adios", "MirCha"]);
+saludar.apply(null, ["Adios", "MirCha"]);
+saludar.apply(this, ["Adios", "MirCha"]);
+this.nombre = "Window";
+const persona = {
+  nombre: "Jon",
+  saludar: function () {
+    console.log(`Hola ${this.nombre}`);
+  },
+};
+persona.saludar();
+const otraPersona = {
+  saludar: persona.saludar.bind(this),
+};
+otraPersona.saludar();
 ```
 
 # Modules
@@ -1400,7 +1437,31 @@ console.log(jon);
 console.log(persona);
 ```
 
-## Propiedades Dinámicas de los Objetos
+## Propiedades Dinámicas de los Objetos (Compute properties)
+
+```js
+let aleatorio = Math.round(Math.random() * 100 + 5);
+const objUsuarios = {
+  [`id_${aleatorio}`]: "Valor Aleatorio",
+};
+console.log(objUsuarios);
+
+const usuarios = ["Hector", "Miguel", "kofy", "Adri"];
+
+usuarios.forEach((usuario, index) => (objUsuarios[`id_ ${index}`] = usuario));
+console.log(objUsuarios);
+```
+
+# JSON (JavaScript Object Notation)
+
+- Datos primitivos y compuestos entre comillas dobles.
+- **_JSON.parse()_** Analiza una cadena de texto como JSON, transformando opcionalmente el valor producido por el análisis.
+
+```js
+console.log(JSON.parse("[1,2,3]"));
+```
+
+- **_JSON.stringify()_** Convierte el valor válido de js a cadena de texto.
 
 # DOM (Document Object Model)
 
