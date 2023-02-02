@@ -1465,6 +1465,57 @@ console.log(JSON.parse("[1,2,3]"));
 
 # DOM (Document Object Model)
 
+## Nodos, Elementos y selectores
+
+- El método **_.querySelector()_** es más lento que **_.getElementById()_** para encontrar Id's
+
+- Ya no se útilizan tanto:
+
+```js
+console.log(document.getElementsByTagName("li"));
+console.log(document.getElementsByClassName("card"));
+console.log(document.getElementsByName("nombre"));
+```
+
+- Si se utilizan
+
+```js
+console.log(document.getElementById("menu"));
+console.log(document.querySelector("#menu"));
+console.log(document.querySelector("a"));
+console.log(document.querySelectorAll("a").length);
+console.log(document.querySelectorAll("a").forEach((el) => console.log(el)));
+console.log(document.querySelectorAll(".card")[2]);
+```
+
+## Atributos y Data-Attributes
+
+- Es necesario comenzar nuestro data-attribute con **_data-_**
+
+```html
+<a href="DOM.html" class="link-dom" data-description="Document Object Model"
+  >DOM</a
+>
+```
+
+- **IMPORTANTE** comenzar con el símbolo de dolar para identificar las variables que pertenecen al documento **HTML**
+
+```js
+const $lINKDOM = document.querySelector(".link-dom");
+
+/* Establecer atributos desde Js con el indicador de variable */
+$lINKDOM.setAttribute("target", "_blank");
+$lINKDOM.setAttribute("rel", "noopener");
+$lINKDOM.setAttribute("href", "https://youtube.com");
+
+/* Eliminar atributos */
+$lINKDOM.removeAttribute("rel");
+
+/* 2 formas de establecer atributos desde JS */
+$lINKDOM.setAttribute("data-description", "Modelo de objeto del Documento");
+$lINKDOM.dataset.description = "No me canso de aprender";
+```
+
 <!--
 
 # Static Site Generator (SSG)
@@ -1474,3 +1525,9 @@ Para blogs, portafolios, landing page, etc.
 - Astro
 - Hugo
   -->
+
+## Estilos y Variables CSS
+
+- Se omite el guión medio "-" de las pripiedades CSS y se utiliza la tecnica lowerCamelCase para usar
+
+- **_.getComputedStyle()_** mapea tanto como propiedades como valores
