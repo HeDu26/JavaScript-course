@@ -1528,6 +1528,69 @@ Para blogs, portafolios, landing page, etc.
 
 ## Estilos y Variables CSS
 
-- Se omite el guión medio "-" de las pripiedades CSS y se utiliza la tecnica lowerCamelCase para usar
+- Para poder interactuar con el CSS de nuestro documento HTML
+- 2 formas de establecer estilos:
 
-- **_.getComputedStyle()_** mapea tanto como propiedades como valores
+1.  **_$VAR.style.property_** se omite el guión medio "-" de las pripiedades CSS y se utiliza la tecnica lowerCamelCase.
+
+2.  **_$VAR.style.setProperty("background-color","pink")_** Sirve para establecer valores a las variables como ejemplos siguientes.
+
+```js
+const $lINKDOM = document.querySelector(".link-dom");
+
+$lINKDOM.style.setProperty("text-decoration", "none");
+$lINKDOM.style.setProperty("display", "block");
+$lINKDOM.style.width = "50%";
+$lINKDOM.style.textAlign = "center";
+$lINKDOM.style.marginLeft = "auto";
+$lINKDOM.style.marginRight = "auto";
+$lINKDOM.style.padding = "1rem";
+$lINKDOM.style.borderRadius = ".5rem";
+```
+
+### Variables CSS
+
+- **RECORDAR** Variables en CSS se establecen con 2 guiones al inicio **--variable-complemento**
+- **_.getComputedStyle($variable)_** mapea tanto como propiedades como valores(predeterminados y establecidos), a diferencia de solo **_$variable.style_** que mapea valores establecidos.
+
+```html
+<style>
+  :root {
+    --yellow-color: #f7df1e;
+    --dark-color: #222;
+  }
+</style>
+```
+
+```js
+const $HTML = document.documentElement,
+  $BODY = document.body;
+
+let varDarkColor = getComputedStyle($HTML).getPropertyValue("--dark-color");
+let varYellowkColor =
+  getComputedStyle($HTML).getPropertyValue("--yellow-color");
+
+$BODY.style.backgroundColor = varDarkColor;
+$BODY.style.color = varYellowkColor;
+
+/* Se establece nuevo valor a variable --dark-color */
+$HTML.style.setProperty("--dark-color", "#000");
+varDarkColor = getComputedStyle($HTML).getPropertyValue("--dark-color");
+
+$BODY.style.setProperty("background-color", varDarkColor);
+```
+
+## Clases CSS
+
+- **_$VAR.ClassList.method("class-name-2");_**
+
+```js
+const $CARD = document.querySelector(".card");
+
+$CARD.classList.add("rotate-45");
+$CARD.classList.remove("rotate-45");
+$CARD.classList.toggle("rotate-45");
+$CARD.classList.toggle("rotate-45");
+$CARD.classList.replace("rotate-45", "rotate-135");
+$CARD.classList.add("sepia", "opacity-80");
+```

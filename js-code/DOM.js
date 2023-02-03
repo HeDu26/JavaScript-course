@@ -48,11 +48,12 @@ $lINKDOM.dataset.description = "No me canso de aprender"; */
 
 /* *************************ESTILOS Y VARIABLES CSS************************************* */
 
-const $lINKDOM = document.querySelector(".link-dom");
+/* const $lINKDOM = document.querySelector(".link-dom");
 console.log($lINKDOM.style);
 console.log($lINKDOM.style.backgroundColor);
 console.log($lINKDOM.style.color);
 console.log(window.getComputedStyle($lINKDOM));
+console.clear();
 console.log(getComputedStyle($lINKDOM).getPropertyValue("color"));
 $lINKDOM.style.setProperty("text-decoration", "none");
 $lINKDOM.style.setProperty("display", "block");
@@ -65,3 +66,47 @@ $lINKDOM.style.borderRadius = ".5rem";
 
 console.log(getComputedStyle($lINKDOM));
 console.log($lINKDOM.style);
+
+const $HTML = document.documentElement,
+  $BODY = document.body;
+
+let varDarkColor = getComputedStyle($HTML).getPropertyValue("--dark-color");
+let varYellowkColor =
+  getComputedStyle($HTML).getPropertyValue("--yellow-color");
+
+console.log(varDarkColor, varYellowkColor);
+
+$BODY.style.backgroundColor = varDarkColor;
+$BODY.style.color = varYellowkColor;
+
+$HTML.style.setProperty("--dark-color", "#000");
+varDarkColor = getComputedStyle($HTML).getPropertyValue("--dark-color");
+
+$BODY.style.setProperty("background-color", varDarkColor); */
+
+/* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+/* *****************CLASES CSS******************************* */
+
+const $CARD = document.querySelector(".card");
+
+$CARD.classList.add("rotate-45");
+$CARD.classList.remove("rotate-45");
+$CARD.classList.toggle("rotate-45");
+$CARD.classList.toggle("rotate-45");
+$CARD.classList.replace("rotate-45", "rotate-135");
+$CARD.classList.add("sepia", "opacity-80");
