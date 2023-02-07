@@ -1467,6 +1467,16 @@ console.log(JSON.parse("[1,2,3]"));
 
 ## Nodos, Elementos y selectores
 
+### Nodos
+
+- Hay 12 diferentes nodos en la especificación del DOM:
+
+1.
+2.
+3.
+
+### Elementos y selectores
+
 - El método **_.querySelector()_** es más lento que **_.getElementById()_** para encontrar Id's
 
 - Ya no se útilizan tanto:
@@ -1605,7 +1615,7 @@ $CARD.classList.add("sepia", "opacity-80");
 
 Lo estan imprimiendo con **_.textContent_**
 
-2.  Si el chat respeta los items de HTML, entonces estan imprimiendo con **_.innerHTML_**
+2.  Si el chat respeta los items de HTML, entonces estan imprimiendo con **_.innerHTML_** La desventaja es que no se esta creando un nodo HTML.
 
 3.  **_.outerHTML_** Se utiliza para manejar una mejor "práctica" de marcado dentro el código HTML.
 
@@ -1658,3 +1668,92 @@ $cards.appendChild($fig2);
 ```
 
 ### Varios elementos a la vez
+
+#### Fragmentos
+
+- Tipo de nodo: **_$VAR= document.createDocumentFragment();_**
+- Mejora el rendimiento en nuestra aplicación y para no pegarle a cada iteración del DOM.
+
+```js
+const meses = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ],
+  $UL3 = document.createElement("ul"),
+  $fragment = document.createDocumentFragment();
+
+meses.forEach((el) => {
+  const $li = document.createElement("li");
+  $li.textContent = el;
+  $fragment.appendChild($li);
+});
+
+/* Se irá agregando cada elemento elemento hijo a elemento padre cómo el ejemplo sig. */
+document.write("<h3> Meses del año </h3>");
+$UL3.appendChild($fragment);
+document.body.appendChild($UL3);
+```
+
+## Templates HTML
+
+- Etiquetas template **No renderizan** en el DOM.
+
+```html
+<!-- template -->
+<template> </template>
+```
+
+- Combinación entre fragmentos y template.
+- A partir de un template empezar a crear estructuras del DOM dinámicamente.(Cómo Classes & objects)
+- El array _cardContent_ simula una solicitud de datos.
+- En el sig. ejemplo se genera de manera dinamica _figure_
+- Con **_document.importNode_** clonamos el template
+
+```js
+const $cards = document.querySelector(".cards"),
+  $template = document.getElementById("template-card").content,
+  $fragment = document.createDocumentFragment(),
+  cardContent = [
+    {
+      title: "Tecnología",
+      img: "https://placeimg.com/200/200/tech",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/animals",
+    },
+    {
+      title: "Arquitectura",
+      img: "https://placeimg.com/200/200/arch",
+    },
+    {
+      title: "Gente",
+      img: "https://placeimg.com/200/200/people",
+    },
+    {
+      title: "Naturaleza",
+      img: "https://placeimg.com/200/200/nature",
+    },
+  ];
+
+cardContent.forEach((el) => {
+  $template.querySelector("img").setAttribute("src", el.img);
+  $template.querySelector("img").setAttribute("alt", el.title);
+  $template.querySelector("figcaption").textContent = el.title;
+
+  let $clone = document.importNode($template, true);
+  $fragment.appendChild($clone);
+});
+
+$cards.appendChild($fragment);
+```

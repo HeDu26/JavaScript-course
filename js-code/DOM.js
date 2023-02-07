@@ -142,7 +142,7 @@ console.log($cards.parentElement);
 console.log($cards.firstChild);
 console.log($cards.firstElementChild); */
 
-const $figure = document.createElement("figure"),
+/* const $figure = document.createElement("figure"),
   $img = document.createElement("img"),
   $figcaption = document.createElement("figcaption"),
   $figcaptionText = document.createTextNode("Animals"),
@@ -157,7 +157,7 @@ $figure.appendChild($img);
 $figure.appendChild($figcaption);
 $cards.appendChild($figure);
 
-/* Forma simplificada */
+//Forma simplificada
 
 $fig2.innerHTML = `
 <img src="https://placeimg.com/200/200/arch" alt="Arch" />
@@ -170,7 +170,7 @@ const SEASONS = ["Primavera", "Verano", "Otoño", "Invierno"];
 
 $ul = document.createElement("ul");
 
-/* NO es buena practica el document.write */
+//NO es buena practica el document.write
 document.write("<h3>Estaciones del año </h3>");
 
 document.body.appendChild($ul);
@@ -180,3 +180,94 @@ SEASONS.forEach((el) => {
   $li.textContent = el;
   $ul.appendChild($li);
 });
+
+const continentes = ["África", "América", "Asia", "Europa", "Oceanía"];
+$ul2 = document.createElement("ul");
+
+document.write("<h3>Continentes del mundo</h3>");
+document.body.appendChild($ul2);
+// Linea para inicializar explicitamente como cadena vacía el .innerHTML for each  
+$ul2.innerHTML = "";
+
+continentes.forEach((el) => {
+  $ul2.innerHTML += `<li>${el}</li>`;
+});
+
+const meses = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ],
+  $UL3 = document.createElement("ul"),
+  $fragment = document.createDocumentFragment();
+
+meses.forEach((el) => {
+  const $li = document.createElement("li");
+  $li.textContent = el;
+  $fragment.appendChild($li);
+});
+// Se irá agregando cada elemento elemento hijo a elemento padre cómo el ejemplo sig. 
+document.write("<h3> Meses del año </h3>");
+$UL3.appendChild($fragment);
+document.body.appendChild($UL3);
+ */
+/* 
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+const $cards = document.querySelector(".cards"),
+  $template = document.getElementById("template-card").content,
+  $fragment = document.createDocumentFragment(),
+  cardContent = [
+    {
+      title: "Tecnología",
+      img: "https://placeimg.com/200/200/tech",
+    },
+    {
+      title: "Animales",
+      img: "https://placeimg.com/200/200/animals",
+    },
+    {
+      title: "Arquitectura",
+      img: "https://placeimg.com/200/200/arch",
+    },
+    {
+      title: "Gente",
+      img: "https://placeimg.com/200/200/people",
+    },
+    {
+      title: "Naturaleza",
+      img: "https://placeimg.com/200/200/nature",
+    },
+  ];
+
+cardContent.forEach((el) => {
+  $template.querySelector("img").setAttribute("src", el.img);
+  $template.querySelector("img").setAttribute("alt", el.title);
+  $template.querySelector("figcaption").textContent = el.title;
+
+  let $clone = document.importNode($template, true);
+  $fragment.appendChild($clone);
+});
+
+$cards.appendChild($fragment);
