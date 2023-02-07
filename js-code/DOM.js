@@ -102,7 +102,7 @@ $BODY.style.setProperty("background-color", varDarkColor); */
 
 /* *****************CLASES CSS******************************* */
 
-const $CARD = document.querySelector(".card");
+/* const $CARD = document.querySelector(".card");
 
 $CARD.classList.add("rotate-45");
 $CARD.classList.remove("rotate-45");
@@ -110,3 +110,73 @@ $CARD.classList.toggle("rotate-45");
 $CARD.classList.toggle("rotate-45");
 $CARD.classList.replace("rotate-45", "rotate-135");
 $CARD.classList.add("sepia", "opacity-80");
+ */
+
+/* const $whatIsDOM = document.getElementById("que-es");
+
+let text = `
+<p>
+      El Modelo de Objetos del Documento (<b><i>DOM - Document Object Model</i></b>) es un API para documentos HTML y XML.
+    </p>
+    <p>
+      Éste proveé una representación estructural del documento, permitiendo modificar su contenido y presentación visual mediante código JS.
+    </p>
+    <p>
+      <mark>El DOM no es parte de la especificación de JavaScript, es una API para los navegadores.</mark>
+    </p>
+  `;
+
+$whatIsDOM.innerText = text;
+$whatIsDOM.textContent = text;
+$whatIsDOM.innerHTML = text;
+$whatIsDOM.outerHTML = text;
+
+ */
+
+/* const $cards = document.querySelector(".cards");
+
+console.log($cards);
+console.log($cards.children);
+console.log($cards.children[2]);
+console.log($cards.parentElement);
+console.log($cards.firstChild);
+console.log($cards.firstElementChild); */
+
+const $figure = document.createElement("figure"),
+  $img = document.createElement("img"),
+  $figcaption = document.createElement("figcaption"),
+  $figcaptionText = document.createTextNode("Animals"),
+  $cards = document.querySelector(".cards"),
+  $fig2 = document.createElement("figure");
+
+$img.setAttribute("src", "https://placeimg.com/200/200/animals");
+$img.setAttribute("alt", "Animals");
+$figure.classList.add("card");
+$figcaption.appendChild($figcaptionText);
+$figure.appendChild($img);
+$figure.appendChild($figcaption);
+$cards.appendChild($figure);
+
+/* Forma simplificada */
+
+$fig2.innerHTML = `
+<img src="https://placeimg.com/200/200/arch" alt="Arch" />
+<figcaption>Arch</figcaption>`;
+
+$fig2.classList.add("card");
+$cards.appendChild($fig2);
+
+const SEASONS = ["Primavera", "Verano", "Otoño", "Invierno"];
+
+$ul = document.createElement("ul");
+
+/* NO es buena practica el document.write */
+document.write("<h3>Estaciones del año </h3>");
+
+document.body.appendChild($ul);
+
+SEASONS.forEach((el) => {
+  const $li = document.createElement("li");
+  $li.textContent = el;
+  $ul.appendChild($li);
+});

@@ -1594,3 +1594,67 @@ $CARD.classList.toggle("rotate-45");
 $CARD.classList.replace("rotate-45", "rotate-135");
 $CARD.classList.add("sepia", "opacity-80");
 ```
+
+## Texto y HTML
+
+1. Ej. Si el chat pinta los items de HTML
+
+```html
+<p>El perro</p>
+```
+
+Lo estan imprimiendo con **_.textContent_**
+
+2.  Si el chat respeta los items de HTML, entonces estan imprimiendo con **_.innerHTML_**
+
+3.  **_.outerHTML_** Se utiliza para manejar una mejor "práctica" de marcado dentro el código HTML.
+
+## DOM Traversing
+
+-Enfocado a las etiquetas HTML
+
+```js
+const $cards = document.querySelector(".cards");
+
+$cards.children;
+$cards.children[2];
+$cards.parentElement;
+$cards.firstChild;
+$cards.firstElementChild;
+```
+
+## Creando elementos y fragmentos
+
+### uno x uno
+
+- Para crear elementos uno x uno
+- **_document.createElement()_**
+- **_$VAR.appendChild()_**
+
+```js
+const $figure = document.createElement("figure"),
+  $img = document.createElement("img"),
+  $figcaption = document.createElement("figcaption"),
+  $figcaptionText = document.createTextNode("Animals"),
+  $cards = document.querySelector(".cards"),
+  $fig2 = document.createElement("figure");
+
+$img.setAttribute("src", "https://placeimg.com/200/200/animals");
+$img.setAttribute("alt", "Animals");
+$figure.classList.add("card");
+$figcaption.appendChild($figcaptionText);
+$figure.appendChild($img);
+$figure.appendChild($figcaption);
+$cards.appendChild($figure);
+
+/* Forma simplificada */
+
+$fig2.innerHTML = `
+<img src="https://placeimg.com/200/200/arch" alt="Arch" />
+<figcaption>Arch</figcaption>`;
+
+$fig2.classList.add("card");
+$cards.appendChild($fig2);
+```
+
+### Varios elementos a la vez
