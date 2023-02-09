@@ -1757,3 +1757,75 @@ cardContent.forEach((el) => {
 
 $cards.appendChild($fragment);
 ```
+
+## Modificando elementos
+
+### Old Style
+
+- Método para clonar:
+  - **_.importeNode_** , clona un modelo(template)
+  - **_.cloneNode(true)_**; crea un clone
+
+```js
+const $cards = document.querySelector(".cards"),
+  $newCard = document.createElement("figure"),
+  $cloneCards = $cards.cloneNode(true); //Necesario True para que se haga valida la clonación
+
+$newCard.innerHTML = ` 
+ <img src="https://placeimg.com/200/200/any" alt="Any">
+ <figcaption>Any</figcaption>`;
+
+$newCard.classList.add("card");
+
+//Reemplazando
+$cards.replaceChild($newCard, $cards.children[2]);
+//Removiendo
+$cards.removeChild($cards.lastElementChild);
+//Insertando
+$cards.insertBefore($newCard, $cards.firstElementChild);
+//Clonando
+document.body.appendChild($cloneCards);
+```
+
+### Cool Style
+
+```js
+.insertAdjacent...
+//elementos HTML
+  .insertAdjacentElement(position, el)
+  //Texto en formatoy sintaxis HTML
+  .insertAdjacentHTML(position, html)
+  //Texto
+  .insertAdjacentText(position, text)
+Posiciones:
+  beforebegin(hermano anterior)
+  afterbegin(primer hijo)
+  beforeend(ultimo hijo)
+  afterend(hermano siguiente)
+```
+
+```js
+const $cards = document.querySelector(".cards"),
+  $newCard = document.createElement("figure");
+
+let $contentCard = ` 
+ <img src="https://placeimg.com/200/200/any" alt="Any">
+ <figcaption></figcaption>`;
+
+$newCard.classList.add("card");
+
+$newCard.insertAdjacentHTML("beforeend", $contentCard);
+$newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Any");
+$cards.insertAdjacentElement("beforeend", $newCard);
+```
+
+- Como en **Jquery**
+
+```js
+$cards.prepend($newCard);
+$cards.append($newCard);
+$cards.before($newCard);
+$cards.after($newCard);
+```
+
+## Manejadores de Eventos
