@@ -1828,4 +1828,80 @@ $cards.before($newCard);
 $cards.after($newCard);
 ```
 
-## Manejadores de Eventos
+## Manejadores de Eventos (functions)
+
+- Funciones asociadas a eventos
+
+### Evento semántico
+
+- Limitante: Una vez definido, solo puede ejecutar una sola función (evento)
+- Cuando se define un evento como si fuera semantico solo se iguala el evento semantico al nombre de la funcion pero sin parentesis, porque parentesis significa que se ejecutara cuando cargen la imagen.
+
+```js
+function holaMundo() {
+  alert("Hola mundo");
+  console.log();
+}
+
+const $SEMANTICO = document.getElementById("evento-semantico");
+
+$SEMANTICO.onclick = holaMundo;
+$SEMANTICO.onclick = function (e) {
+  alert("Hola mundo Manejador de Eventos Semaántico");
+  console.log(e);
+};
+```
+
+### Evento Múltiple
+
+- Para diferentes eventos en un solo elemento
+
+```js
+function holaMundo() {
+  alert("Hola mundo");
+  console.log();
+}
+
+const $SEMANTICOMULTIPLE = document.getElementById("evento-multiple");
+
+/* "Tipo de evento", nombreDeFunction */
+$SEMANTICOMULTIPLE.addEventListener("click", holaMundo);
+$SEMANTICOMULTIPLE.addEventListener("click", (e) => {
+  alert("Hola mundo manejador de eventos múltiples");
+  console.log(e);
+  console.log(e.type);
+  console.log(e.target);
+});
+```
+
+### Evento con Parámetros
+
+- Practicamente eventos con parámetros no es posible, sin embargo, con ayuda de **arrowFunction** esta acción es posible.
+
+```js
+function saludar(nombre = "Desconocid@") {
+  alert(`Hola ${nombre}`);
+}
+
+const $SEMANTICOMULTIPLE = document.getElementById("evento-multiple");
+
+$SEMANTICOMULTIPLE.addEventListener("click", () => {
+  saludar();
+  saludar("Héctor");
+});
+```
+
+### Remover Eventos
+
+```js
+const $eventoRemover = document.getElementById("evento-remover");
+
+const removerDobleClick = (e) => {
+  alert(`Removiendo el evento de tipo ${e.type}`);
+  console.log(e);
+  $eventoRemover.removeEventListener("dblclick", removerDobleClick);
+  $eventoRemover.disabled = true;
+};
+
+$eventoRemover.addEventListener("dblclick", removerDobleClick);
+```

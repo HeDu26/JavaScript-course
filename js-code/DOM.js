@@ -318,3 +318,53 @@ $newCard.querySelector("figcaption").insertAdjacentText("afterbegin", "Any");
 //$cards.before($newCard);
 //$cards.after($newCard);
  */
+
+/* 
+
+
+
+
+
+
+
+
+*/
+function holaMundo() {
+  alert("Hola mundo");
+  console.log();
+}
+
+function saludar(nombre = "Desconocid@") {
+  alert(`Hola ${nombre}`);
+}
+
+const $SEMANTICO = document.getElementById("evento-semantico");
+const $SEMANTICOMULTIPLE = document.getElementById("evento-multiple");
+const $eventoRemover = document.getElementById("evento-remover");
+
+$SEMANTICO.onclick = holaMundo;
+$SEMANTICO.onclick = function (e) {
+  alert("Hola mundo Manejador de Eventos Semaántico");
+  console.log(e);
+};
+//"Tipo de evento", nombreDeFunction
+$SEMANTICOMULTIPLE.addEventListener("click", holaMundo);
+$SEMANTICOMULTIPLE.addEventListener("click", (e) => {
+  alert("Hola mundo manejador de eventos múltiples");
+  console.log(e);
+  console.log(e.type);
+  console.log(e.target);
+});
+$SEMANTICOMULTIPLE.addEventListener("click", () => {
+  saludar();
+  saludar("Héctor");
+});
+
+const removerDobleClick = (e) => {
+  alert(`Removiendo el evento de tipo ${e.type}`);
+  console.log(e);
+  $eventoRemover.removeEventListener("dblclick", removerDobleClick);
+  $eventoRemover.disabled = true;
+};
+
+$eventoRemover.addEventListener("dblclick", removerDobleClick);
