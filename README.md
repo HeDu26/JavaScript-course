@@ -1835,7 +1835,7 @@ $cards.after($newCard);
 ### Evento semántico
 
 - Limitante: Una vez definido, solo puede ejecutar una sola función (evento)
-- Cuando se define un evento como si fuera semantico solo se iguala el evento semantico al nombre de la funcion pero sin parentesis, porque parentesis significa que se ejecutara cuando cargen la imagen.
+- Cuando se define un evento como si fuera semantico solo se iguala el evento semantico al nombre de la funcion pero sin parentesis, porque parentesis significa que se ejecutara cuando cargen la página.
 
 ```js
 function holaMundo() {
@@ -1904,4 +1904,24 @@ const removerDobleClick = (e) => {
 };
 
 $eventoRemover.addEventListener("dblclick", removerDobleClick);
+```
+
+## Flujo de Eventos (Burbuja y Captura)
+
+- Burbuja: Del elementos más interno hasta el padre superior.(Adrento Hacia afuera)
+- Captura: Del elemento exterior al interior. Se dice que esta fase es más optima ya que no consume tnta memoria.
+
+```js
+$divsEventos.forEach((div) => {
+  //Fase de burbuja
+  //div.addEventListener("click", flujoEventos);
+  //div.addEventListener("click", flujoEventos, false);
+  //Fase de captura
+  //div.addEventListener("click", flujoEventos, true);
+  //Cómo objeto
+  div.addEventListener("click", flujoEventos, {
+    capture: false,
+    once: true,
+  });
+});
 ```
