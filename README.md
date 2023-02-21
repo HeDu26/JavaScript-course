@@ -1925,3 +1925,43 @@ $divsEventos.forEach((div) => {
   });
 });
 ```
+
+### stopPropagation & preventDefault
+
+- **_e.preventDefault();_** : Previene las acciones por default del elemento. ej. abrir un enlace.
+- **_e.stopPropagation();_** : Detiene la propagación de los eventos(funciones) ej. un _.foreach_
+
+```js
+const $linkEventos = document.querySelector(".eventos-flujo a");
+
+$linkEventos.addEventListener("click", (e) => {
+  alert("Hola soy Héctor y sigo aprendiendo sobre Eventos en JS");
+  e.preventDefault();
+  e.stopPropagation();
+});
+```
+
+## Delegación de eventos
+
+- Forma más optima de trabajar con los eventos.
+- Solamente asignamos un "click" al evento.
+
+```js
+function flujoEventos(e) {
+  console.log(
+    `Hola te saluda ${this}, el click lo originó ${e.target.className}`
+  );
+}
+
+document.addEventListener("click", (e) => {
+  console.log("Click en", e.target);
+
+  if (e.target.matches(".eventos-flujo div")) {
+    flujoEventos(e);
+  }
+  if (e.target.matches(".eventos-flujo a")) {
+    alert("Soy Héctor y cada vez conozco más el DOM");
+    e.preventDefault();
+  }
+});
+```

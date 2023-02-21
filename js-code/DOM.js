@@ -382,25 +382,21 @@ $eventoRemover.addEventListener("dblclick", removerDobleClick);
 
 */
 /* ******************************FLUJO DE EVENTOS************** */
-const $divsEventos = document.querySelectorAll(".eventos-flujo div");
 
 function flujoEventos(e) {
   console.log(
-    `Hola te saluda ${this.className}, el click lo originó ${e.target.className}`
+    `Hola te saluda ${this}, el click lo originó ${e.target.className}`
   );
 }
 
-console.log($divsEventos);
+document.addEventListener("click", (e) => {
+  console.log("Click en", e.target);
 
-$divsEventos.forEach((div) => {
-  //Fase de burbuja
-  //div.addEventListener("click", flujoEventos);
-  //div.addEventListener("click", flujoEventos, false);
-  //Fase de captura
-  //div.addEventListener("click", flujoEventos, true);
-  //Cómo objeto
-  div.addEventListener("click", flujoEventos, {
-    capture: false,
-    once: true,
-  });
+  if (e.target.matches(".eventos-flujo div")) {
+    flujoEventos(e);
+  }
+  if (e.target.matches(".eventos-flujo a")) {
+    alert("Soy Héctor y cada vez conozco más el DOM");
+    e.preventDefault();
+  }
 });
