@@ -383,7 +383,7 @@ $eventoRemover.addEventListener("dblclick", removerDobleClick);
 */
 /* ******************************FLUJO DE EVENTOS************** */
 
-function flujoEventos(e) {
+/* function flujoEventos(e) {
   console.log(
     `Hola te saluda ${this}, el click lo originó ${e.target.className}`
   );
@@ -399,4 +399,92 @@ document.addEventListener("click", (e) => {
     alert("Soy Héctor y cada vez conozco más el DOM");
     e.preventDefault();
   }
+});
+ */
+
+/* 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+/* *****************BOM******************************** */
+/* window.addEventListener("resize", (e) => {
+  console.clear();
+  console.log("************Evento resize***************");
+  console.log(window.innerWidth);
+  console.log(window.innerHeight);
+  console.log(window.outerHeight);
+  console.log(window.outerWidth);
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+  console.log(e);
+});
+
+window.addEventListener("scroll", (e) => {
+  console.clear();
+  console.log("************Evento Scroll***************");
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+  console.log(e);
+});
+
+window.addEventListener("load", (e) => {
+  console.log("************Evento Load***************");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
+});
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  console.log("************DOMContentLoaded***************");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
+}); */
+
+/* 
+
+
+
+
+
+*/
+
+//window.alert("Alerta");
+//window.confirm("Confirmación");
+//window.prompt("aviso");
+
+const $btnAbrir = document.getElementById("abrir-ventana"),
+  $btnCerrar = document.getElementById("cerrar-ventana"),
+  $btnImprimir = document.getElementById("imprimir-ventana");
+
+let ventana;
+
+$btnAbrir.addEventListener("click", (e) => {
+  ventana = window.open("https://openai.com");
+});
+
+$btnCerrar.addEventListener("click", (e) => {
+  //window.close();
+  ventana.close();
+});
+$btnImprimir.addEventListener("click", (e) => {
+  window.print();
 });

@@ -1965,3 +1965,85 @@ document.addEventListener("click", (e) => {
   }
 });
 ```
+
+## BOM
+
+### Propiedades y Eventos
+
+- Evento Resize
+
+```js
+window.addEventListener("resize", (e) => {
+  console.clear();
+  console.log("************Evento resize***************");
+  console.log(window.innerWidth);
+  console.log(window.innerHeight);
+  console.log(window.outerHeight);
+  console.log(window.outerWidth);
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+  console.log(e);
+});
+```
+
+- Evento Scroll
+
+```js
+window.addEventListener("scroll", (e) => {
+  console.clear();
+  console.log("************Evento Scroll***************");
+  console.log(window.scrollX);
+  console.log(window.scrollY);
+  console.log(e);
+});
+```
+
+- Evento Load
+
+```js
+window.addEventListener("load", (e) => {
+  console.log("************Evento Load***************");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
+});
+```
+
+- **DOMContentLoaded** Siempre será la mejor opción para cargar contenido al recargar la página.
+
+```js
+document.addEventListener("DOMContentLoaded", (e) => {
+  console.log("************DOMContentLoaded***************");
+  console.log(window.screenX);
+  console.log(window.screenY);
+  console.log(e);
+});
+```
+
+### Window.Method
+
+- alert, confirm, promt, open,close, print.
+
+```js
+//window.alert("Alerta");
+//window.confirm("Confirmación");
+//window.prompt("aviso");
+
+const $btnAbrir = document.getElementById("abrir-ventana"),
+  $btnCerrar = document.getElementById("cerrar-ventana"),
+  $btnImprimir = document.getElementById("imprimir-ventana");
+
+let ventana;
+
+$btnAbrir.addEventListener("click", (e) => {
+  ventana = window.open("https://openai.com");
+});
+
+$btnCerrar.addEventListener("click", (e) => {
+  //window.close();
+  ventana.close();
+});
+$btnImprimir.addEventListener("click", (e) => {
+  window.print();
+});
+```
