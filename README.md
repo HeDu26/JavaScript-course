@@ -1966,7 +1966,7 @@ document.addEventListener("click", (e) => {
 });
 ```
 
-## BOM
+## BOM ( Browser Object Model)
 
 ### Propiedades y Eventos
 
@@ -2022,6 +2022,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 ### Window.Method
 
+- A todo lo que cuelga de window, no es necesario ponerla **_window._**
 - alert, confirm, promt, open,close, print.
 
 ```js
@@ -2046,4 +2047,51 @@ $btnCerrar.addEventListener("click", (e) => {
 $btnImprimir.addEventListener("click", (e) => {
   window.print();
 });
+```
+
+### Objetos
+
+#### URL
+
+- Manejo de direcciones
+
+```js
+console.log(location);
+console.log(location.origin);
+console.log(location.protocol);
+console.log(location.host);
+console.log(location.hostname);
+console.log(location.port);
+console.log(location.href);
+console.log(location.hash);
+console.log(location.search);
+console.log(location.pathname);
+//location.reload();
+```
+
+#### Historial
+
+- Este objeto solo funciona y esta basado en el historial actual que se tenga
+
+```js
+console.log(history);
+console.log(history.length);
+//history.forward(1);
+//history.back(2);
+//history.go(-3);
+```
+
+#### Navegador
+
+```js
+console.log(navigator);
+console.log(navigator.connection);
+console.log(navigator.geolocation);
+console.log(navigator.mediaDevices);
+console.log(navigator.mimeTypes);
+console.log(navigator.onLine);
+console.log(navigator.serviceWorker);
+console.log(navigator.storage);
+console.log(navigator.usb);
+console.log(navigator.userAgent);
 ```
